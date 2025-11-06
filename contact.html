@@ -15,15 +15,21 @@
       min-height: 100vh;
     }
     header {
-      background: transparent;
-      padding: 2rem 2.5rem 1.2rem 2.5rem;
-      display: flex;
-      align-items: center;
-    }
-    header a img {
-      height: 60px;
-      filter: brightness(0) invert(1);
-    }
+  position: absolute;
+  width: 100%;
+  background: transparent;
+  display: flex;
+  align-items: flex-start;
+  padding: 0;
+  z-index: 99;
+}
+header a img {
+  height: 100px;
+  margin-left: 4rem;
+  margin-top: 2.5rem;
+  filter: brightness(0) invert(1);
+}
+
     .contact-layout {
       display: flex;
       justify-content: center;
