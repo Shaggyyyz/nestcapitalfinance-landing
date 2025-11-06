@@ -108,9 +108,15 @@
   position: relative;
   min-height: 90vh;
   overflow: hidden;
-  /* remove padding-left if used only for content alignment, keep for content not background */
-  padding-top: 0;         /* remove any vertical padding! */
+  padding-left: 4rem;
+  padding-top: 0;    /* <--- key line */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  color: #fff;
 }
+
 
 .hero-slideshow {
   position: absolute;
