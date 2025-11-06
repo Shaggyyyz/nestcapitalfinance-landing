@@ -300,6 +300,38 @@ nav a:hover, .dropbtn:hover {
     slides[currentSlide].classList.add('active');
   }
 </script>
+<script>
+document.querySelectorAll('.dropdown').forEach(function(drop) {
+  var timer;
+
+  drop.addEventListener('mouseenter', function() {
+    clearTimeout(timer);
+    this.querySelector('.dropdown-content').style.display = 'block';
+  });
+
+  drop.addEventListener('mouseleave', function() {
+    var dropdownContent = this.querySelector('.dropdown-content');
+    timer = setTimeout(function() {
+      dropdownContent.style.display = 'none';
+    }, 400); // Adjust delay in ms (e.g., 400ms)
+  });
+
+  // Optionally, ensure links inside dropdown also keep it open while hovering
+  var content = drop.querySelector('.dropdown-content');
+  if (content) {
+    content.addEventListener('mouseenter', function() {
+      clearTimeout(timer);
+      this.style.display = 'block';
+    });
+    content.addEventListener('mouseleave', function() {
+      var self = this;
+      timer = setTimeout(function() {
+        self.style.display = 'none';
+      }, 400);
+    });
+  }
+});
+</script>
 
 </body>
 </html>
