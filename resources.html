@@ -7,6 +7,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;600;700&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet" />
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
     body {
       font-family: 'Fira Sans', Arial, sans-serif;
       font-weight: 300;
@@ -14,21 +20,27 @@
       background: #181820;
       color: #fff;
     }
+    
     header {
-      position: absolute;
+      position: fixed;
+      top: 0;
       width: 100%;
-      background: transparent;
+      background: #181820;
       display: flex;
       align-items: flex-start;
       padding: 0;
       z-index: 99;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
-    header img {
+    
+    header a img {
       height: 100px;
       margin-left: 4rem;
-      margin-top: 2.5rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
       filter: brightness(0) invert(1);
     }
+    
     nav {
       flex: 1;
       display: flex;
@@ -38,10 +50,12 @@
       align-items: flex-start;
       padding-right: 3rem;
     }
+    
     .dropdown {
       position: relative;
       display: inline-block;
     }
+    
     .dropbtn {
       color: #fff;
       text-decoration: none;
@@ -56,6 +70,7 @@
       padding: 0;
       font-family: inherit;
     }
+    
     .dropdown-content {
       display: none;
       position: absolute;
@@ -67,6 +82,7 @@
       z-index: 1001;
       padding: 0.4rem 0;
     }
+    
     .dropdown-content a {
       color: #fff;
       padding: 0.9rem 1.5rem;
@@ -76,19 +92,24 @@
       transition: background .17s, color .17s;
       border-radius: 4px;
     }
+    
     .dropdown-content a:hover {
       background-color: #363d48;
       color: #b6befb;
     }
+    
     .dropdown:hover .dropdown-content {
       display: block;
     }
+    
     nav a, .dropbtn {
       color: #fff;
     }
+    
     nav a:hover, .dropbtn:hover {
       color: #606060;
     }
+    
     nav a {
       color: #fff;
       text-decoration: none;
@@ -98,12 +119,11 @@
       letter-spacing: .5px;
       position: relative;
     }
-    nav a:hover {
-      color: #606060;
-    }
+    
     main {
-      padding-top: 130px;
+      padding-top: 140px;
       padding-bottom: 3rem;
+      min-height: 100vh;
     }
 
     h1 {
@@ -122,6 +142,7 @@
       max-width: 700px;
       margin-left: auto;
       margin-right: auto;
+      padding: 0 1rem;
     }
 
     section {
@@ -154,7 +175,6 @@
       line-height: 1.6;
     }
     
-    /* CARD GRID STYLES */
     .resource-grid {
       display: flex;
       flex-wrap: wrap;
@@ -222,6 +242,504 @@
       line-height: 1.5;
     }
     
-    /* LENDER PANEL - LOGO GRID */
     .lender-grid {
       display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .lender-item {
+      background: #2a2b36;
+      border-radius: 10px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 4px 12px #191a2336;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100px;
+      transition: transform 0.3s cubic-bezier(.23,1.08,.66,.99), box-shadow 0.3s;
+      opacity: 0;
+      transform: translateY(60px);
+      animation: fadeUp 1s forwards;
+    }
+    
+    .lender-item:nth-child(1){ animation-delay: 0.1s;}
+    .lender-item:nth-child(2){ animation-delay: 0.2s;}
+    .lender-item:nth-child(3){ animation-delay: 0.3s;}
+    .lender-item:nth-child(4){ animation-delay: 0.4s;}
+    .lender-item:nth-child(5){ animation-delay: 0.5s;}
+    .lender-item:nth-child(6){ animation-delay: 0.6s;}
+    .lender-item:nth-child(7){ animation-delay: 0.7s;}
+    .lender-item:nth-child(8){ animation-delay: 0.8s;}
+    
+    .lender-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px #4a4f7f80;
+    }
+    
+    .lender-item h4 {
+      font-size: 1.2rem;
+      color: #b6befb;
+      margin: 0;
+      text-align: center;
+      font-weight: 600;
+    }
+    
+    .blog-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .blog-card {
+      flex: 1 1 calc(50% - 1rem);
+      min-width: 280px;
+      background: #2a2b36;
+      border-radius: 10px;
+      padding: 1.8rem;
+      box-shadow: 0 4px 12px #191a2336;
+      transition: transform 0.3s cubic-bezier(.23,1.08,.66,.99), box-shadow 0.3s;
+      opacity: 0;
+      transform: translateY(60px);
+      animation: fadeUp 1s forwards;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .blog-card:nth-child(1){ animation-delay: 0.1s;}
+    .blog-card:nth-child(2){ animation-delay: 0.3s;}
+    .blog-card:nth-child(3){ animation-delay: 0.5s;}
+    .blog-card:nth-child(4){ animation-delay: 0.7s;}
+    
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px #4a4f7f80;
+    }
+    
+    .blog-date {
+      font-size: 0.9rem;
+      color: #2563eb;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+    
+    .blog-card h3 {
+      font-size: 1.4rem;
+      color: #b6befb;
+      margin: 0 0 0.8rem 0;
+      font-weight: 600;
+    }
+    
+    .blog-card p {
+      font-size: 1rem;
+      color: #c0c2d4;
+      line-height: 1.6;
+      margin: 0 0 1rem 0;
+      flex-grow: 1;
+    }
+    
+    .blog-link {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+    
+    .blog-link:hover {
+      color: #ffffff;
+    }
+    
+    .faq-container {
+      max-width: 800px;
+      margin: 2rem auto 0;
+    }
+    
+    .faq-item {
+      background: #2a2b36;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 12px #191a2336;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(60px);
+      animation: fadeUp 1s forwards;
+      transition: box-shadow 0.3s;
+    }
+    
+    .faq-item:nth-child(1){ animation-delay: 0.1s;}
+    .faq-item:nth-child(2){ animation-delay: 0.2s;}
+    .faq-item:nth-child(3){ animation-delay: 0.3s;}
+    .faq-item:nth-child(4){ animation-delay: 0.4s;}
+    .faq-item:nth-child(5){ animation-delay: 0.5s;}
+    .faq-item:nth-child(6){ animation-delay: 0.6s;}
+    .faq-item:nth-child(7){ animation-delay: 0.7s;}
+    .faq-item:nth-child(8){ animation-delay: 0.8s;}
+    
+    .faq-item:hover {
+      box-shadow: 0 6px 16px #4a4f7f60;
+    }
+    
+    .faq-question {
+      padding: 1.5rem 2rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #b6befb;
+      transition: background 0.3s;
+      user-select: none;
+    }
+    
+    .faq-question:hover {
+      background: #32333e;
+    }
+    
+    .faq-question i {
+      font-size: 1.3rem;
+      color: #2563eb;
+      transition: transform 0.3s;
+      flex-shrink: 0;
+      margin-left: 1rem;
+    }
+    
+    .faq-item.active .faq-question i {
+      transform: rotate(180deg);
+    }
+    
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+      padding: 0 2rem;
+    }
+    
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+      padding: 0 2rem 1.5rem 2rem;
+    }
+    
+    .faq-answer p {
+      font-size: 1.05rem;
+      color: #c0c2d4;
+      line-height: 1.7;
+      margin: 0;
+    }
+    
+    @media (max-width: 900px) {
+      header a img {
+        margin-left: 1rem;
+        height: 80px;
+      }
+      nav {
+        gap: 1.5rem;
+        padding-right: 1rem;
+        font-size: 0.9rem;
+      }
+      .resource-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+      .resource-card {
+        width: 90%;
+      }
+      .blog-card {
+        flex: 1 1 100%;
+      }
+    }
+    
+    footer {
+      background: #181a20;
+      color: #a7a7be;
+      text-align: center;
+      padding: 2rem 0;
+      margin-top: 3rem;
+      font-size: 1rem;
+      letter-spacing: .7px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html">
+      <img src="https://raw.githubusercontent.com/Shaggyyyz/nestcapitalfinance-landing/refs/heads/main/NFCLogo1.png" alt="Nest Capital Finance Logo" />
+    </a>
+    <nav>
+      <div class="dropdown">
+        <button class="dropbtn">Services</button>
+        <div class="dropdown-content">
+          <a href="Services.html#home-loans">Home Loans</a>
+          <a href="Services.html#property-advisory">Property Advisory</a>
+          <a href="Services.html#asset-finance">Asset Finance</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">About</button>
+        <div class="dropdown-content">
+          <a href="about.html#mission">Company Mission</a>
+          <a href="about.html#team">Meet Our Team</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">Partners</button>
+        <div class="dropdown-content">
+          <a href="#">Coming Soon</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">Resources</button>
+        <div class="dropdown-content">
+          <a href="#calculators">Home Loan Calculators</a>
+          <a href="#lender-panel">Lender Panel</a>
+          <a href="#blogs">Blogs</a>
+          <a href="#faqs">FAQs</a>
+        </div>
+      </div>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+  
+  <main>
+    <h1>Resources</h1>
+    <p class="page-subtitle">Expert tools, insights, and information to help you make informed financial decisions</p>
+    
+    <!-- HOME LOAN CALCULATORS -->
+    <section id="calculators">
+      <h2>Home Loan Calculators</h2>
+      <p class="section-intro">Use our free calculators to estimate repayments, borrowing capacity, and more—empowering you to plan your property journey with confidence.</p>
+      <div class="resource-grid">
+        <div class="resource-card">
+          <div class="resource-icon"><i class="ri-calculator-line"></i></div>
+          <div class="resource-title">Loan Repayment Calculator</div>
+          <div class="resource-desc">Estimate your monthly repayments based on loan amount, interest rate, and term.</div>
+        </div>
+        <div class="resource-card">
+          <div class="resource-icon"><i class="ri-money-dollar-circle-line"></i></div>
+          <div class="resource-title">Borrowing Power Calculator</div>
+          <div class="resource-desc">Find out how much you can borrow based on your income and expenses.</div>
+        </div>
+        <div class="resource-card">
+          <div class="resource-icon"><i class="ri-percent-line"></i></div>
+          <div class="resource-title">Stamp Duty Calculator</div>
+          <div class="resource-desc">Calculate stamp duty costs for your property purchase across Australia.</div>
+        </div>
+        <div class="resource-card">
+          <div class="resource-icon"><i class="ri-time-line"></i></div>
+          <div class="resource-title">Loan Comparison Tool</div>
+          <div class="resource-desc">Compare different loan options side-by-side to find the best fit for you.</div>
+        </div>
+        <div class="resource-card">
+          <div class="resource-icon"><i class="ri-savings-line"></i></div>
+          <div class="resource-title">Offset Calculator</div>
+          <div class="resource-desc">See how an offset account can reduce interest and save you money.</div>
+        </div>
+        <div class="resource-card">
+          <div class="resource-icon"><i class="ri-file-chart-line"></i></div>
+          <div class="resource-title">Refinance Calculator</div>
+          <div class="resource-desc">Discover potential savings by refinancing your existing home loan.</div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- LENDER PANEL -->
+    <section id="lender-panel">
+      <h2>Our Lender Panel</h2>
+      <p class="section-intro">We work with 60+ trusted lenders across Australia, giving you access to competitive rates and tailored loan solutions.</p>
+      <div class="lender-grid">
+        <div class="lender-item">
+          <h4>Commonwealth Bank</h4>
+        </div>
+        <div class="lender-item">
+          <h4>Westpac</h4>
+        </div>
+        <div class="lender-item">
+          <h4>ANZ</h4>
+        </div>
+        <div class="lender-item">
+          <h4>NAB</h4>
+        </div>
+        <div class="lender-item">
+          <h4>Macquarie Bank</h4>
+        </div>
+        <div class="lender-item">
+          <h4>ING</h4>
+        </div>
+        <div class="lender-item">
+          <h4>Bankwest</h4>
+        </div>
+        <div class="lender-item">
+          <h4>And 50+ More</h4>
+        </div>
+      </div>
+    </section>
+    
+    <!-- BLOGS -->
+    <section id="blogs">
+      <h2>Latest Insights</h2>
+      <p class="section-intro">Stay informed with expert articles on property finance, market trends, and homeownership tips.</p>
+      <div class="blog-grid">
+        <div class="blog-card">
+          <div class="blog-date">November 5, 2025</div>
+          <h3>First Home Buyer's Guide for 2025</h3>
+          <p>Everything you need to know about grants, schemes, and getting your foot on the property ladder in today's market.</p>
+          <a href="#" class="blog-link">Read More →</a>
+        </div>
+        <div class="blog-card">
+          <div class="blog-date">October 28, 2025</div>
+          <h3>Fixed vs Variable: Which is Right for You?</h3>
+          <p>Understanding the pros and cons of fixed and variable interest rates to make an informed decision.</p>
+          <a href="#" class="blog-link">Read More →</a>
+        </div>
+        <div class="blog-card">
+          <div class="blog-date">October 15, 2025</div>
+          <h3>Investment Property Tax Benefits Explained</h3>
+          <p>Maximize your returns by understanding depreciation, negative gearing, and deductions for property investors.</p>
+          <a href="#" class="blog-link">Read More →</a>
+        </div>
+        <div class="blog-card">
+          <div class="blog-date">October 2, 2025</div>
+          <h3>How to Improve Your Credit Score</h3>
+          <p>Practical steps to boost your credit rating and increase your chances of loan approval with better rates.</p>
+          <a href="#" class="blog-link">Read More →</a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- FAQs -->
+    <section id="faqs">
+      <h2>Frequently Asked Questions</h2>
+      <p class="section-intro">Find quick answers to common questions about home loans, applications, and our services.</p>
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What documents do I need to apply for a home loan?</span>
+            <i class="ri-arrow-down-s-line"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Typically, you'll need proof of identity (driver's license or passport), proof of income (payslips or tax returns), bank statements for the last 3-6 months, details of assets and liabilities, and information about the property you're purchasing. We'll guide you through the exact requirements based on your situation.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How much deposit do I need to buy a home?</span>
+            <i class="ri-arrow-down-s-line"></i>
+          </div>
+          <div class="faq-answer">
+            <p>While a 20% deposit is ideal to avoid Lenders Mortgage Insurance (LMI), many lenders accept deposits as low as 5-10%. First home buyers may also access government schemes that allow lower deposits. We can help you explore all available options.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What is Lenders Mortgage Insurance (LMI)?</span>
+            <i class="ri-arrow-down-s-line"></i>
+          </div>
+          <div class="faq-answer">
+            <p>LMI is insurance that protects the lender if you default on your loan. It's typically required when your deposit is less than 20% of the property value. The cost varies based on your loan amount and deposit size, and it's usually added to your loan or paid upfront.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How long does the home loan approval process take?</span>
+            <i class="ri-arrow-down-s-line"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Pre-approval can take 1-3 business days, while full approval typically takes 5-10 business days once all documentation is submitted. Complex applications or additional property valuations may extend this timeframe. We work to expedite the process wherever possible.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Can I get a home loan if I'm self-employed?</span>
+            <i class="ri-arrow-down-s-line"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Absolutely! Self-employed borrowers can access home loans, though you'll typically need to provide 2 years of tax returns and financial statements. Some lenders offer low-doc loans with alternative income verification methods. We specialize in finding the right solutions for self-employed clients.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What's the difference between pre-approval and approval?</span>
+            <i class="ri-arrow-down-s-line"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Pre-approval (or conditional approval) is an indication of how much you can borrow based on your financial situation. Full approval is granted once the lender verifies all documentation and values the property. Pre-approval gives you confidence when making offers, but it's subject to final conditions.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Should I fix or keep my interest rate variable?</span>
+            <i class="ri-arrow-down-s-line"></i>
+          </div>
+          <div class="faq-answer">
+            <p>This depends on your risk tolerance, market conditions, and financial goals. Fixed rates offer payment certainty, while variable rates provide flexibility and potential savings if rates drop. Many clients choose a split loan combining both. We'll help you assess what's best for your circumstances.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Do you charge fees for your service?</span>
+            <i class="ri-arrow-down-s-line"></i>
+          </div>
+          <div class="faq-answer">
+            <p>For most home loan applications, our service is completely free—we're paid a commission by the lender when your loan settles. For complex scenarios or specialized services, we'll discuss any fees upfront. Transparency is at the core of everything we do.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer>
+    &copy; 2025 Nest Capital Finance | All Rights Reserved
+  </footer>
+  
+  <script>
+    // Dropdown navigation
+    document.querySelectorAll('.dropdown').forEach(function(drop) {
+      var content = drop.querySelector('.dropdown-content');
+      var btn = drop.querySelector('.dropbtn');
+
+      drop.addEventListener('mouseenter', function () {
+        if (content) content.style.display = 'block';
+      });
+
+      drop.addEventListener('mouseleave', function() {
+        if (content) {
+          setTimeout(function() {
+            if (!drop.matches(':hover')) {
+              content.style.display = 'none';
+            }
+          }, 200);
+        }
+      });
+    });
+    
+    // FAQ Accordion
+    document.querySelectorAll('.faq-item').forEach(function(item) {
+      var question = item.querySelector('.faq-question');
+      
+      question.addEventListener('click', function() {
+        var wasActive = item.classList.contains('active');
+        
+        // Close all items
+        document.querySelectorAll('.faq-item').forEach(function(otherItem) {
+          otherItem.classList.remove('active');
+        });
+        
+        // Toggle current item (if it wasn't already active)
+        if (!wasActive) {
+          item.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
