@@ -209,12 +209,93 @@
       line-height: 1.5;
     }
     
+    /* TEAM SECTION - UPDATED TO MATCH SERVICES STYLE */
+    .team-section {
+      max-width: 1000px;
+      background: #22232c;
+      padding: 2rem 1.5rem;
+      margin: 2rem auto;
+      border-radius: 14px;
+      box-shadow: 0 1px 12px #0405123a;
+    }
+    
+    .team-section h2 {
+      text-align: center;
+      font-size: 2.6rem;
+      margin-bottom: 2rem;
+      color: #b6befb;
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+    
+    .team-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      justify-content: center;
+    }
+    
+    .team-member {
+      width: 280px;
+      background: #2a2b36;
+      border-radius: 10px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 4px 12px #191a2336;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s cubic-bezier(.23,1.08,.66,.99), box-shadow 0.3s;
+      opacity: 0;
+      transform: translateY(60px);
+      animation: fadeUp 1s forwards;
+    }
+    
+    .team-member:nth-child(1){ animation-delay: 0.1s;}
+    .team-member:nth-child(2){ animation-delay: 0.3s;}
+    .team-member:nth-child(3){ animation-delay: 0.5s;}
+    .team-member:nth-child(4){ animation-delay: 0.7s;}
+    
+    .team-member:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px #4a4f7f80;
+    }
+    
+    .team-member img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1.2rem;
+      border: 3px solid #2563eb;
+      transition: border-color 0.3s;
+    }
+    
+    .team-member:hover img {
+      border-color: #ffffff;
+    }
+    
+    .team-member h4 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.4rem;
+      color: #b6befb;
+      font-weight: 600;
+      text-align: center;
+    }
+    
+    .team-member p {
+      font-size: 1.05rem;
+      color: #c0c2d4;
+      margin: 0;
+      text-align: center;
+      line-height: 1.5;
+    }
+    
     @media (max-width: 900px) {
-      .values-grid {
+      .values-grid, .team-grid {
         flex-direction: column;
         align-items: center;
       }
-      .value-card {
+      .value-card, .team-member {
         width: 90%;
       }
     }
@@ -222,41 +303,7 @@
     h2 {
       color: #b6befb;
     }
-    .team-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2.2rem;
-      margin-top: 2rem;
-      justify-content: center;
-    }
-    .team-member {
-      background: #292b36;
-      border-radius: 10px;
-      padding: 1.2rem 1.2rem 0.7rem 1.2rem;
-      width: 200px;
-      text-align: center;
-      box-shadow: 0 4px 12px #191a2336;
-      color: #fff;
-    }
-    .team-member img {
-      width: 78px;
-      height: 78px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 1rem;
-      background: #fff;
-    }
-    .team-member h4 {
-      margin: 0 0 0.4rem 0;
-      font-size: 1.09rem;
-      color: #b6befb;
-      font-weight: 700;
-    }
-    .team-member p {
-      font-size: 0.99rem;
-      color: #c2c7e7;
-      margin: 0;
-    }
+    
     ul {
       padding-left: 1.3em;
     }
@@ -385,8 +432,8 @@
       </div>
     </section>
     
-    <!-- TEAM -->
-    <section id="team">
+    <!-- TEAM - UPDATED TO MATCH SERVICES STYLE -->
+    <section class="team-section" id="team">
       <h2>Meet Our Team</h2>
       <div class="team-grid">
         <div class="team-member">
@@ -411,6 +458,7 @@
         </div>
       </div>
     </section>
+    
     <!-- COMPANY HISTORY -->
     <section>
       <h2>Our Journey</h2>
