@@ -17,22 +17,20 @@ header {
   width: 100%;
   background: transparent;
   display: flex;
-  align-items: center;
-  padding: 2rem 2.5rem 0 2.5rem;
+  align-items: flex-start;  /* Aligns top of flex-container */
+  padding: 0;
   z-index: 99;
 }
 header img {
   height: 60px;
-  margin-left: 3rem; /* Increase for more rightward shift */
-  margin-top: 1rem;  /* Add this for a downward shift */
+  margin-left: 3rem;
+  margin-top: 1.2rem;
   filter: brightness(0) invert(1);
 }
-
 nav {
   flex: 1;
   text-align: right;
-  margin-top: 10rem; /* Add this line or increase the value for lower placement */
-  margin-right: 5rem;
+  margin-top: 2.8rem;
 }
 }
 nav a {
