@@ -264,7 +264,7 @@
     <div class="hero-content">
       <h1>Dream. Plan. Buy.</h1>
       <p>Your trusted partner for home loans, property finance, and Commercial finance</p>
-      <a href="https://shaggyyyz.github.io/nestcapitalfinance-landing/contact.html" class="cta-button">Get Started</a>
+      <button class="cta-button" id="getStartedBtn">Get Started</button>
     </div>
   </div>
   <section id="services">
@@ -348,6 +348,12 @@
       }
     });
   </script>
+  <script>
+  document.getElementById('getStartedBtn').onclick = function() {
+    window.location.href = 'contact.html';
+  };
+</script>
+
 </body>
 </html>
 
