@@ -279,5 +279,45 @@
   <footer>
     &copy; 2025 Nest Capital Finance | All Rights Reserved
   </footer>
+  <script>
+document.querySelectorAll('.dropdown').forEach(function(drop, idx, arr) {
+  var content = drop.querySelector('.dropdown-content');
+
+  drop.addEventListener('mouseenter', function () {
+    // Close all dropdown contents first
+    arr.forEach(function(other) {
+      var otherContent = other.querySelector('.dropdown-content');
+      if (otherContent && otherContent !== content) {
+        otherContent.style.display = 'none';
+      }
+    });
+    if (content) content.style.display = 'block';
+  });
+
+  drop.addEventListener('mouseleave', function() {
+    if (content) {
+      setTimeout(function() {
+        // Only hide if not already active from another hover (prevents close on quick nav)
+        if (!drop.matches(':hover') && !content.matches(':hover')) {
+          content.style.display = 'none';
+        }
+      }, 800);
+    }
+  });
+
+  if (content) {
+    content.addEventListener('mouseenter', function () {
+      content.style.display = 'block';
+    });
+    content.addEventListener('mouseleave', function () {
+      setTimeout(function() {
+        if (!drop.matches(':hover') && !content.matches(':hover')) {
+          content.style.display = 'none';
+        }
+      }, 800);
+    });
+  }
+});
+</script>
 </body>
 </html>
