@@ -161,22 +161,37 @@
       max-width: 520px;
       text-shadow: 0 2px 5px #191a24af;
     }
+
+    /* Button Styles for both CTA buttons (Get Started and Send Message) */
     .cta-button {
       background: #fff;
       color: #191a2b;
       border: none;
       padding: 1rem 2.3rem;
       font-size: 1.1rem;
-      border-radius: 2rem;
+      border-radius: 7px; /* Square style button */
       font-weight: 700;
       box-shadow: 0 4px 20px #232f3e19;
       cursor: pointer;
-      transition: background 0.2s, color 0.2s;
+      transition: background 0.18s, color 0.18s, transform 0.09s;
+      letter-spacing: .04em;
+      width: 100%;
+      max-width: 330px;
+      display: block;
+      margin-top: 1rem;
+      margin-bottom: 0;
     }
     .cta-button:hover {
       background: #2563eb;
       color: #fff;
     }
+    .cta-button:active {
+      transform: scale(0.965);
+      background: #1d47b8;
+      color: #fff;
+      box-shadow: 0 2px 10px #232f3e40;
+    }
+
     section {
       max-width: 900px;
       margin: 2rem auto;
@@ -215,6 +230,11 @@
         margin: 1.2rem 0.2rem;
       }
     }
+    /* Optional: If you want "Send Message" Contact button to fill its column instead */
+    .contact-section .cta-button {
+      width: 100%;
+      max-width: none;
+    }
   </style>
 </head>
 <body>
@@ -244,7 +264,7 @@
     <div class="hero-content">
       <h1>Dream. Plan. Buy.</h1>
       <p>Your trusted partner for home loans, property finance, and Commercial finance</p>
-      <a href="#contact"><button class="cta-button">Get Started</button></a>
+      <button class="cta-button">Get Started</button>
     </div>
   </div>
   <section id="services">
