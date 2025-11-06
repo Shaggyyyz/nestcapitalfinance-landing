@@ -284,6 +284,90 @@
       .footer-top, .footer-bottom { font-size: 0.93em; }
       .footer-links a { margin: 0 0.5em 0 0; }
     }
+    @media (max-width: 900px) {
+  header img {
+    height: 58px;
+    margin-left: 1rem;
+    margin-top: 1.1rem;
+  }
+  nav {
+    gap: 1.1rem;
+    padding-right: 1rem;
+    margin-top: 1.1rem;
+    font-size: 0.98rem;
+  }
+  .hero {
+    padding-left: 1rem;
+  }
+  .hero-content {
+    max-width: 99vw;
+  }
+  section {
+    border-radius: 9px;
+    padding: 1.2rem .6rem;
+    max-width: 98vw;
+  }
+  .footer-main, .footer-bottom, .footer-top {
+    max-width: 100vw;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+  }
+}
+@media (max-width: 700px) {
+  header img {
+    height: 36px;
+    margin-left: .17rem;
+    margin-top: .55rem;
+  }
+  nav {
+    gap: 0.55rem;
+    font-size: .93rem;
+    padding-right: 0.2rem;
+    flex-wrap: wrap;
+  }
+  .hero {
+    padding-left: 0.4rem;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+  section {
+    border-radius: 4px;
+    padding: .7rem .12rem;
+    font-size: .95em;
+    max-width: 99vw;
+  }
+  .footer-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+    text-align: left;
+    padding-bottom: .45rem;
+    margin-bottom: .6rem;
+  }
+  .footer-col {
+    min-width: unset;
+    width: 100%;
+  }
+  .footer-main, .footer-bottom {
+    padding-left: .10rem;
+    padding-right: .10rem;
+    font-size: .95em;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: .5em;
+    text-align: left;
+    align-items: flex-start;
+  }
+}
+@media (max-width: 420px) {
+  .hero h1 { font-size: 1.12rem; }
+  nav { font-size: .87rem; }
+  section { font-size: .9em; }
+  .footer-bottom { font-size: .91em; }
+}
+
   </style>
 </head>
 <body>
