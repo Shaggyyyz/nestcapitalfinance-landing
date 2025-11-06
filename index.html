@@ -4,9 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Nest Capital Finance - Mortgage & Property Experts</title>
-  <!-- Import Fira Sans Light font -->
   <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --side-padding-desktop: 4rem;
+      --side-padding-mobile: 0.7rem;
+    }
     body {
       font-family: 'Fira Sans', Arial, sans-serif;
       font-weight: 300;
@@ -16,6 +19,7 @@
     }
     header {
       position: absolute;
+      left: 0; top: 0; right: 0;
       width: 100%;
       background: transparent;
       display: flex;
@@ -25,7 +29,7 @@
     }
     header img {
       height: 100px;
-      margin-left: 4rem;
+      margin-left: var(--side-padding-desktop);
       margin-top: 2.5rem;
       filter: brightness(0) invert(1);
       transition: height 0.2s, margin 0.2s;
@@ -39,74 +43,6 @@
       align-items: flex-start;
       padding-right: 3rem;
     }
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-    .dropbtn {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: color 0.2s;
-      letter-spacing: .5px;
-      background: none;
-      border: none;
-      outline: none;
-      cursor: pointer;
-      padding: 0;
-      font-family: inherit;
-    }
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #232b34;
-      min-width: 200px;
-      box-shadow: 0 8px 18px 0 rgba(0,0,0,0.22);
-      border-radius: 7px;
-      margin-top: .7rem;
-      z-index: 1001;
-      padding: 0.4rem 0;
-    }
-    .dropdown-content a {
-      color: #fff;
-      padding: 0.9rem 1.5rem;
-      text-decoration: none;
-      display: block;
-      font-size: 1rem;
-      transition: background .17s, color .17s;
-      border-radius: 4px;
-    }
-    .dropdown-content a:hover {
-      background-color: #363d48;
-      color: #b6befb;
-    }
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-    nav a, .dropbtn {
-      color: #fff;
-    }
-    nav a:hover, .dropbtn:hover {
-      color: #606060;
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: color 0.2s;
-      letter-spacing: .5px;
-      position: relative;
-    }
-    nav a:hover {
-      color: #606060;
-    }
-
-    main {
-      padding-top: 130px;
-    }
-
     .hero {
       position: relative;
       min-height: 90vh;
@@ -128,7 +64,7 @@
     }
     .hero-slideshow .slide {
       position: absolute;
-      width: 100%;
+      width: 100vw;
       height: 100%;
       background-size: cover;
       background-position: center;
@@ -151,7 +87,8 @@
       position: relative;
       z-index: 2;
       max-width: 600px;
-      margin-left: 4rem;
+      padding-left: var(--side-padding-desktop); /* only the content is padded */
+      box-sizing: border-box;
       animation: fadeUp 1.1s 0.15s forwards;
       opacity: 0;
       transform: translateY(55px);
@@ -201,71 +138,28 @@
       color: #fff;
       box-shadow: 0 2px 10px #232f3e40;
     }
-
-    .cards-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2.5rem;
-      width: 100%;
-      max-width: 100vw;
-      padding: 3rem 1rem 2rem 1rem;
-      box-sizing: border-box;
-    }
-    .info-card {
-      background: #22232c;
-      border-radius: 16px;
-      box-shadow: 0 1px 16px #04051220;
-      width: 100%;
-      max-width: 950px;
-      padding: 2.2rem 2.5rem 2.2rem 2.5rem;
-      margin: 0 auto;
-      color: #fff;
-      opacity: 0;
-      transform: translateY(60px);
-      animation: fadeUp 1.1s forwards;
-    }
-    .info-card:nth-child(1){ animation-delay: 0.15s; }
-    .info-card:nth-child(2){ animation-delay: 0.33s; }
-    .info-card h2 {
-      color: #b6befb;
-      margin-top: 0;
-    }
-    .info-card h3,
-    .info-card strong {
-      color: #fff;
-      font-size: 1.16rem;
-      margin-bottom: 0.38rem;
-    }
-    .info-card p,
-    .info-card li {
-      color: #fff;
-      font-size: 1.08rem;
-    }
-    .info-card ul {
-      margin: 0;
-      padding-left: 1.4em;
-    }
     @keyframes fadeUp {
       to { opacity: 1; transform: translateY(0); }
     }
+    /* ... your other card/section styles ... */
+
     @media (max-width: 900px) {
-      header img { height: 77px; margin-left: 1.2rem; margin-top: 1rem;}
-      nav { justify-content: center; gap: 1.5rem; margin-top: 1.2rem; padding-right: 0;}
-      .hero-content { margin-left: 1rem; }
-      .info-card, .cards-wrapper { padding-left: .5rem; padding-right: .5rem; }
+      header img {
+        margin-left: var(--side-padding-mobile);
+        height: 75px;
+        margin-top: 1.2rem;
+      }
+      .hero-content {
+        padding-left: var(--side-padding-mobile);
+      }
     }
     @media (max-width: 700px) {
-      header img { height: 54px; margin-left: 0.5rem; margin-top: .7rem;}
-      .hero-content { margin-left: 0.2rem; }
-      .info-card { max-width: 99vw; padding: 1.2rem 0.65rem; border-radius: 9px;}
-      .cards-wrapper { padding: 1.1rem 0.15rem;}
-      .hero h1 { font-size: 1.72rem; }
+      .hero h1 { font-size: 1.7rem; }
+      .hero-content { padding-left: 0.2rem; }
       .hero p { font-size: 1em;}
     }
     @media (max-width: 450px) {
-      .info-card { padding: .58rem .13rem .7rem .13rem; }
-      .cards-wrapper { padding: .3rem .04rem;}
+      .hero-content { padding-left: 0.05rem; }
     }
   </style>
 </head>
@@ -300,41 +194,7 @@
         <button class="cta-button" id="getStartedBtn">Get Started</button>
       </div>
     </div>
-    <div class="cards-wrapper">
-      <div class="info-card">
-        <h2>Our Services</h2>
-        <p><strong>Home Loans</strong><br>
-          Access competitive residential and commercial home loan solutions from 60+ lenders, tailored to your needs.
-        </p>
-        <p><strong>Property Advisory</strong><br>
-          Guidance for buying, selling, or investing—local expertise and trusted advocacy to help you succeed.
-        </p>
-        <p><strong>Asset Finance</strong><br>
-          Finance for vehicles, business equipment, and assets—streamlined for fast approvals and fair rates.
-        </p>
-      </div>
-      <div class="info-card">
-        <h2>About Nest Capital Finance</h2>
-        <p>
-          At Nest Capital Finance, our mission is to simplify the journey to your dream property. Our award-nominated team combines industry experience, personal service, and insider access to leading lenders—earning 5-star client reviews every step of the way. Based in Australia, we support clients locally and overseas with tailored mortgage and property solutions.
-        </p>
-        <strong>Testimonials</strong>
-        <ul>
-          <li>"Nest Capital Finance made my home buying journey stress-free—professional, fast, and found a great rate for me." — Chris, Melbourne</li>
-          <li>"Expert advice, clear communication, and genuine care. Couldn’t recommend them more highly." — Priya, Sydney</li>
-        </ul>
-      </div>
-    </div>
-    <section class="contact-section" id="contact">
-      <h2>Contact Us</h2>
-      <p>Want to discuss your property finance needs? Send us a message and our team will get in touch.</p>
-      <form>
-        <input type="text" placeholder="Full Name" required /><br />
-        <input type="email" placeholder="Email" required /><br />
-        <textarea placeholder="Your Message" rows="4" required></textarea><br />
-        <button type="submit" class="cta-button">Send Message</button>
-      </form>
-    </section>
+    <!-- ... rest of your content ... -->
   </main>
   <footer>
     &copy; 2025 Nest Capital Finance | All Rights Reserved
@@ -343,7 +203,6 @@
     const slides = document.querySelectorAll('.hero-slideshow .slide');
     let currentSlide = 0;
     const slideInterval = setInterval(nextSlide, 5000);
-
     function nextSlide() {
       slides[currentSlide].classList.remove('active');
       currentSlide = (currentSlide + 1) % slides.length;
@@ -353,19 +212,16 @@
   <script>
     document.querySelectorAll('.dropdown').forEach(function(drop) {
       var timer;
-
       drop.addEventListener('mouseenter', function() {
         clearTimeout(timer);
         this.querySelector('.dropdown-content').style.display = 'block';
       });
-
       drop.addEventListener('mouseleave', function() {
         var dropdownContent = this.querySelector('.dropdown-content');
         timer = setTimeout(function() {
           dropdownContent.style.display = 'none';
         }, 1000);
       });
-
       var content = drop.querySelector('.dropdown-content');
       if (content) {
         content.addEventListener('mouseenter', function() {
@@ -388,6 +244,7 @@
   </script>
 </body>
 </html>
+
 
 
 
