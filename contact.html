@@ -23,6 +23,15 @@
       height: 60px;
       filter: brightness(0) invert(1);
     }
+    input::placeholder,
+textarea::placeholder {
+  color: #8c92ac;              /* Light grey/blue for readability */
+  font-family: inherit;        /* Ensures uses same font as input */
+  font-size: 1rem;             /* Uniform font size */
+  font-weight: 300;            /* Matches your 'reason to contact' example */
+  opacity: 1;                  /* Full opacity for visibility */
+  letter-spacing: 0;           /* No extra spacing */
+}
     .contact-layout {
       display: flex;
       justify-content: center;
