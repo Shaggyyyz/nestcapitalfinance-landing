@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Nest Capital Finance - Mortgage & Property Experts</title>
-  <!-- Import Fira Sans Light font -->
   <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&display=swap" rel="stylesheet" />
   <style>
     body {
@@ -14,6 +13,7 @@
       background: #181820;
       color: #fff;
     }
+    /* --- HEADER + NAV (unchanged) --- */
     header {
       position: absolute;
       width: 100%;
@@ -66,6 +66,8 @@
       margin-top: .7rem;
       z-index: 1001;
       padding: 0.4rem 0;
+      left: 0;
+      top: 100%;
     }
     .dropdown-content a {
       color: #fff;
@@ -101,36 +103,29 @@
     nav a:hover {
       color: #606060;
     }
-    main {
-  /* Remove padding-top, or set to 0 if you prefer: */
-  /* padding-top: 0; */
-}
-
-.hero {
-  position: relative;
-  min-height: 90vh;
-  overflow: hidden;
-  padding-left: 4rem;
-  padding-top: 0;    /* <--- key line */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  color: #fff;
-}
-
-
-.hero-slideshow {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  filter: blur(3px);
-  transform: scale(1.05);
-}
-
+    main { }
+    .hero {
+      position: relative;
+      min-height: 90vh;
+      overflow: hidden;
+      padding-left: 4rem;
+      padding-top: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      color: #fff;
+    }
+    .hero-slideshow {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      filter: blur(3px);
+      transform: scale(1.05);
+    }
     .hero-slideshow .slide {
       position: absolute;
       width: 100%;
@@ -211,54 +206,122 @@
     h2 {
       color: #b6befb;
     }
-    footer {
-      background: #181a20;
-      color: #a7a7be;
-      text-align: center;
-      padding: 2rem 0;
-      margin-top: 3rem;
-      font-size: 1rem;
-      letter-spacing: .7px;
+    /* --- Footer (Entourage-style multi-column) --- */
+    .footer-main {
+      background: #1d1c22;
+      color: #bbb;
+      padding: 2.2rem 2vw 0.9rem 2vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    /* No mobile breakpoints in this version */
+    .footer-top {
+      width: 100%;
+      max-width: 1300px;
+      display: flex;
+      gap: 2rem;
+      justify-content: space-between;
+      border-bottom: 1px solid #292834;
+      padding-bottom: 1.1rem;
+      margin-bottom: 1.3rem;
+      flex-wrap: wrap;
+    }
+    .footer-col {
+      flex: 1 1 260px;
+      color: #bfc2cf;
+      font-size: 1.03em;
+      min-width: 200px;
+    }
+    .footer-col strong {
+      color: #fff;
+      font-size: 1.13em;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      display: block;
+      margin-bottom: 0.5em;
+    }
+    .footer-col .detail {
+      color: #b9bacf;
+      line-height: 1.4;
+      margin-bottom: 1em;
+      font-size: .98em;
+    }
+    .footer-bottom {
+      width: 100%;
+      max-width: 1300px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #848484;
+      font-size: 1rem;
+      padding-top: 0.6em;
+    }
+    .footer-links a {
+      color: #bbb;
+      text-decoration: none;
+      margin: 0 1.1em 0 0;
+      font-size: .97em;
+      transition: color .2s;
+    }
+    .footer-links a:hover {
+      color: #fff;
+    }
+    @media (max-width: 900px) {
+      .footer-top, .footer-bottom {
+        max-width: 99vw;
+      }
+      .footer-main { padding: 1.2rem 0.2rem 0.73rem 0.2rem; }
+    }
+    @media (max-width: 700px) {
+      .footer-top {
+        flex-direction: column;
+        gap: 1.25rem;
+        text-align: left;
+      }
+      .footer-main, .footer-bottom { padding: 1.15rem 0.1rem 0.45rem 0.1rem;}
+    }
+    @media (max-width: 450px) {
+      .footer-top, .footer-bottom { font-size: 0.93em; }
+      .footer-links a { margin: 0 0.5em 0 0; }
+    }
   </style>
 </head>
 <body>
   <header>
     <img src="https://raw.githubusercontent.com/Shaggyyyz/nestcapitalfinance-landing/refs/heads/main/NFCLogo1.png" alt="Nest Capital Finance Logo" />
-  <nav>
-  <div class="dropdown">
-    <a href="Services.html" class="dropbtn">Services</a>
-    <div class="dropdown-content">
-      <a href="Services.html#home-loans">Home Loans</a>
-      <a href="Services.html#property-advisory">Property Advisory</a>
-      <a href="Services.html#asset-finance">Asset Finance</a>
-    </div>
-  </div>
-  <div class="dropdown">
-    <a href="about.html" class="dropbtn">About</a>
-    <div class="dropdown-content">
-      <a href="about.html">Company Mission</a>
-      <a href="about.html">Meet Our Team</a>
-    </div>
-  </div>
-  <div class="dropdown">
-    <a href="#partners" class="dropbtn">Partners</a>
-    <div class="dropdown-content">
-      <a href="#">Coming Soon</a>
-    </div>
-  </div>
-  <div class="dropdown">
-    <a href="#resources" class="dropbtn">Resources</a>
-    <div class="dropdown-content">
-      <a href="#calculators">Home Loan Calculators</a>
-      <a href="#lender-panel">Lender Panel</a>
-      <a href="#blogs">Blogs</a>
-      <a href="#faqs">FAQs</a>
-    </div>
-  </div>
-  <a href="contact.html">Contact</a>
-</nav>
+    <nav>
+      <div class="dropdown">
+        <a href="Services.html" class="dropbtn">Services</a>
+        <div class="dropdown-content">
+          <a href="Services.html#home-loans">Home Loans</a>
+          <a href="Services.html#property-advisory">Property Advisory</a>
+          <a href="Services.html#asset-finance">Asset Finance</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="about.html" class="dropbtn">About</a>
+        <div class="dropdown-content">
+          <a href="about.html">Company Mission</a>
+          <a href="about.html">Meet Our Team</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#partners" class="dropbtn">Partners</a>
+        <div class="dropdown-content">
+          <a href="#">Coming Soon</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#resources" class="dropbtn">Resources</a>
+        <div class="dropdown-content">
+          <a href="#calculators">Home Loan Calculators</a>
+          <a href="#lender-panel">Lender Panel</a>
+          <a href="#blogs">Blogs</a>
+          <a href="#faqs">FAQs</a>
+        </div>
+      </div>
+      <a href="contact.html">Contact</a>
+    </nav>
   </header>
   <main>
     <div class="hero">
@@ -301,108 +364,79 @@
         <div class="testimonial">"Expert advice, clear communication, and genuine care. Couldn’t recommend them more highly." — Priya, Sydney</div>
       </div>
     </section>
-    <section class="contact-section" id="contact">
-      <h2>Contact Us</h2>
-      <p>Want to discuss your property finance needs? Send us a message and our team will get in touch.</p>
-      <form>
-        <input type="text" placeholder="Full Name" required /><br />
-        <input type="email" placeholder="Email" required /><br />
-        <textarea placeholder="Your Message" rows="4" required></textarea><br />
-        <button type="submit" class="cta-button">Send Message</button>
-      </form>
-    </section>
+    <!-- NO CONTACT US SECTION -->
   </main>
-  <footer>
-    &copy; 2025 Nest Capital Finance | All Rights Reserved
+  <footer class="footer-main">
+    <div class="footer-top">
+      <div class="footer-col">
+        <strong>Nest Capital Finance Pty Ltd</strong>
+        <div class="detail">
+          ABN: 12 345 678 901<br>
+          Australian Credit Licence: 123456<br>
+        </div>
+      </div>
+      <div class="footer-col">
+        <strong>Nest Property Advisory</strong>
+        <div class="detail">
+          ABN: 23 456 789 012<br>
+          Real Estate Licence: 987654L<br>
+        </div>
+      </div>
+      <div class="footer-col">
+        <strong>Nest Asset Pty Ltd</strong>
+        <div class="detail">
+          ACN 234567890<br>
+          Australian Credit Licence: 112233<br>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>
+        &copy; 2025 Nest Capital | Privacy Policy | Culture
+      </div>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Culture</a>
+      </div>
+    </div>
   </footer>
   <script>
-    const slides = document.querySelectorAll('.hero-slideshow .slide');
-    let currentSlide = 0;
-    const slideInterval = setInterval(nextSlide, 5000);
-
-    function nextSlide() {
-      slides[currentSlide].classList.remove('active');
-      currentSlide = (currentSlide + 1) % slides.length;
-      slides[currentSlide].classList.add('active');
-    }
-  </script>
-  <script>
-    document.querySelectorAll('.dropdown').forEach(function(drop) {
-      var timer;
-
-      drop.addEventListener('mouseenter', function() {
-        clearTimeout(timer);
-        this.querySelector('.dropdown-content').style.display = 'block';
-      });
-
-      drop.addEventListener('mouseleave', function() {
-        var dropdownContent = this.querySelector('.dropdown-content');
-        timer = setTimeout(function() {
-          dropdownContent.style.display = 'none';
-        }, 1000);
-      });
-
+    // Dropdown instant switcher for quick nav
+    document.querySelectorAll('.dropdown').forEach(function(drop, idx, arr) {
       var content = drop.querySelector('.dropdown-content');
-      if (content) {
-        content.addEventListener('mouseenter', function() {
-          clearTimeout(timer);
-          this.style.display = 'block';
+      drop.addEventListener('mouseenter', function () {
+        arr.forEach(function(other) {
+          var otherContent = other.querySelector('.dropdown-content');
+          if (otherContent && otherContent !== content) { otherContent.style.display = 'none'; }
         });
-        content.addEventListener('mouseleave', function() {
-          var self = this;
-          timer = setTimeout(function() {
-            self.style.display = 'none';
-          }, 1000);
+        if (content) content.style.display = 'block';
+      });
+      drop.addEventListener('mouseleave', function() {
+        if (content) {
+          setTimeout(function() {
+            if (!drop.matches(':hover') && !content.matches(':hover')) {
+              content.style.display = 'none';
+            }
+          }, 800);
+        }
+      });
+      if (content) {
+        content.addEventListener('mouseenter', function () {
+          content.style.display = 'block';
+        });
+        content.addEventListener('mouseleave', function () {
+          setTimeout(function() {
+            if (!drop.matches(':hover') && !content.matches(':hover')) {
+              content.style.display = 'none';
+            }
+          }, 800);
         });
       }
     });
-  </script>
-  <script>
     document.getElementById('getStartedBtn').onclick = function() {
       window.location.href = 'contact.html';
     };
   </script>
-  <script>
-document.querySelectorAll('.dropdown').forEach(function(drop, idx, arr) {
-  var content = drop.querySelector('.dropdown-content');
-
-  drop.addEventListener('mouseenter', function () {
-    // Close all dropdown contents first
-    arr.forEach(function(other) {
-      var otherContent = other.querySelector('.dropdown-content');
-      if (otherContent && otherContent !== content) {
-        otherContent.style.display = 'none';
-      }
-    });
-    if (content) content.style.display = 'block';
-  });
-
-  drop.addEventListener('mouseleave', function() {
-    if (content) {
-      setTimeout(function() {
-        // Only hide if not already active from another hover (prevents close on quick nav)
-        if (!drop.matches(':hover') && !content.matches(':hover')) {
-          content.style.display = 'none';
-        }
-      }, 800); // Your current delay for closing after mouse leaves
-    }
-  });
-
-  if (content) {
-    content.addEventListener('mouseenter', function () {
-      content.style.display = 'block';
-    });
-    content.addEventListener('mouseleave', function () {
-      setTimeout(function() {
-        if (!drop.matches(':hover') && !content.matches(':hover')) {
-          content.style.display = 'none';
-        }
-      }, 800);
-    });
-  }
-});
-</script>
-
 </body>
 </html>
 
