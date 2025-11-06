@@ -15,23 +15,23 @@
       min-height: 100vh;
     }
     header {
-  position: absolute;
-  width: 100%;
-  background: transparent;
-  display: flex;
-  align-items: flex-start;
-  padding: 0;
-  z-index: 99;
-}
-header a img {
-  height: 100px;
-  margin-left: 4rem;
-  margin-top: 2.5rem;
-  filter: brightness(0) invert(1);
-}
+      position: absolute;
+      width: 100%;
+      background: transparent;
+      display: flex;
+      align-items: flex-start;
+      padding: 0;
+      z-index: 99;
+    }
+    header a img {
+      height: 100px;
+      margin-left: 4rem;
+      margin-top: 2.5rem;
+      filter: brightness(0) invert(1);
+    }
     main {
-  padding-top: 130px;
-}
+      padding-top: 130px; /* Ensures main content sits below logo/header */
+    }
     .contact-layout {
       display: flex;
       justify-content: center;
@@ -116,8 +116,6 @@ header a img {
     .contact-social a:hover {
       background: #2563eb; color: #fff;
     }
-
-    /* Contact form card */
     .contact-section {
       flex: 1 1 420px;
       background: #22232c;
@@ -232,7 +230,6 @@ header a img {
       opacity: 1;
       letter-spacing: 0;
     }
-
     .cta-button {
       width: 100%;
       background: #2563eb;
@@ -262,6 +259,7 @@ header a img {
         padding: 1.2rem 0 2.2rem 0;
       }
       .contact-section, .contact-details { max-width: 97vw; }
+      main { padding-top: 130px; }
     }
     @media (max-width: 700px) {
       header { padding: 1.2rem .7rem;}
@@ -277,54 +275,56 @@ header a img {
 </head>
 <body>
   <header>
-  <a href="index.html">
-    <img src="https://raw.githubusercontent.com/Shaggyyyz/nestcapitalfinance-landing/refs/heads/main/NFCLogo1.png" alt="Nest Capital Finance Logo" />
-  </a>
-</header>
-  <div class="contact-layout">
-    <aside class="contact-details">
-      <h2>Let's Chat</h2>
-      <h4>Arrange a free chat with us today</h4>
-      <div class="descriptor">
-        Are you ready to enjoy the Nest Capital experience? Let us help you get finance, property advice, or just grow your wealth. Call or email now!
-      </div>
-      <ul class="info-list">
-        <li>
-          <span class="icon"><i class="fa-solid fa-phone"></i></span>
-          03 9421 1651
-        </li>
-        <li>
-          <span class="icon"><i class="fa-solid fa-envelope"></i></span>
-          info@nestcapital.com.au
-        </li>
-        <li>
-          <span class="icon"><i class="fa-solid fa-location-dot"></i></span>
-          Level 5, 9-11 Cremorne St, Cremorne VIC 3121
-        </li>
-      </ul>
-      <div class="contact-social">
-        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-      </div>
-    </aside>
-    <section class="contact-section">
-      <h1>Contact Us</h1>
-      <form>
-        <div class="form-grid">
-          <label for="fullName">Full Name</label>
-          <input type="text" id="fullName" name="fullName" placeholder="Your full name" required>
-          <label for="mobile">Mobile Number</label>
-          <input type="tel" id="mobile" name="mobile" placeholder="Your mobile number" required pattern="[0-9 ]{8,15}">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="Your email address" required>
-          <label for="reason">Reason to contact</label>
-          <textarea id="reason" name="reason" rows="3" placeholder="Type your reason here" required></textarea>
+    <a href="index.html">
+      <img src="https://raw.githubusercontent.com/Shaggyyyz/nestcapitalfinance-landing/refs/heads/main/NFCLogo1.png" alt="Nest Capital Finance Logo" />
+    </a>
+  </header>
+  <main>
+    <div class="contact-layout">
+      <aside class="contact-details">
+        <h2>Let's Chat</h2>
+        <h4>Arrange a free chat with us today</h4>
+        <div class="descriptor">
+          Are you ready to enjoy the Nest Capital experience? Let us help you get finance, property advice, or just grow your wealth. Call or email now!
         </div>
-        <button type="submit" class="cta-button">Send Message</button>
-      </form>
-    </section>
-  </div>
+        <ul class="info-list">
+          <li>
+            <span class="icon"><i class="fa-solid fa-phone"></i></span>
+            03 9421 1651
+          </li>
+          <li>
+            <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+            info@nestcapital.com.au
+          </li>
+          <li>
+            <span class="icon"><i class="fa-solid fa-location-dot"></i></span>
+            Level 5, 9-11 Cremorne St, Cremorne VIC 3121
+          </li>
+        </ul>
+        <div class="contact-social">
+          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </aside>
+      <section class="contact-section">
+        <h1>Contact Us</h1>
+        <form>
+          <div class="form-grid">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" placeholder="Your full name" required>
+            <label for="mobile">Mobile Number</label>
+            <input type="tel" id="mobile" name="mobile" placeholder="Your mobile number" required pattern="[0-9 ]{8,15}">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Your email address" required>
+            <label for="reason">Reason to contact</label>
+            <textarea id="reason" name="reason" rows="3" placeholder="Type your reason here" required></textarea>
+          </div>
+          <button type="submit" class="cta-button">Send Message</button>
+        </form>
+      </section>
+    </div>
+  </main>
 </body>
 </html>
 
