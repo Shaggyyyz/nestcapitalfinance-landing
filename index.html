@@ -313,7 +313,7 @@ document.querySelectorAll('.dropdown').forEach(function(drop) {
     var dropdownContent = this.querySelector('.dropdown-content');
     timer = setTimeout(function() {
       dropdownContent.style.display = 'none';
-    }, 400); // Adjust delay in ms (e.g., 400ms)
+    }, 1000); // Adjust delay in ms (e.g., 400ms)
   });
 
   // Optionally, ensure links inside dropdown also keep it open while hovering
@@ -327,7 +327,7 @@ document.querySelectorAll('.dropdown').forEach(function(drop) {
       var self = this;
       timer = setTimeout(function() {
         self.style.display = 'none';
-      }, 400);
+      }, 1000);
     });
   }
 });
