@@ -278,6 +278,41 @@
     <a href="index.html">
       <img src="https://raw.githubusercontent.com/Shaggyyyz/nestcapitalfinance-landing/refs/heads/main/NFCLogo1.png" alt="Nest Capital Finance Logo" />
     </a>
+<nav>
+  <div class="dropdown">
+    <a href="Services.html" class="dropbtn">Services</a>
+    <div class="dropdown-content">
+      <a href="Services.html#home-loans">Home Loans</a>
+      <a href="Services.html#property-advisory">Property Advisory</a>
+      <a href="Services.html#asset-finance">Asset Finance</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <a href="about.html" class="dropbtn">About</a>
+    <div class="dropdown-content">
+      <a href="about.html">Company Mission</a>
+      <a href="about.html">Meet Our Team</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <a href="#partners" class="dropbtn">Partners</a>
+    <div class="dropdown-content">
+      <a href="#">Coming Soon</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <a href="#resources" class="dropbtn">Resources</a>
+    <div class="dropdown-content">
+      <a href="#calculators">Home Loan Calculators</a>
+      <a href="#lender-panel">Lender Panel</a>
+      <a href="#blogs">Blogs</a>
+      <a href="#faqs">FAQs</a>
+    </div>
+  </div>
+  <a href="contact.html">Contact</a>
+</nav>
+
+    
   </header>
   <main>
     <div class="contact-layout">
@@ -325,6 +360,46 @@
       </section>
     </div>
   </main>
+  <script>
+document.querySelectorAll('.dropdown').forEach(function(drop, idx, arr) {
+  var content = drop.querySelector('.dropdown-content');
+
+  drop.addEventListener('mouseenter', function () {
+    // Close all dropdown contents first
+    arr.forEach(function(other) {
+      var otherContent = other.querySelector('.dropdown-content');
+      if (otherContent && otherContent !== content) {
+        otherContent.style.display = 'none';
+      }
+    });
+    if (content) content.style.display = 'block';
+  });
+
+  drop.addEventListener('mouseleave', function() {
+    if (content) {
+      setTimeout(function() {
+        // Only hide if not already active from another hover (prevents close on quick nav)
+        if (!drop.matches(':hover') && !content.matches(':hover')) {
+          content.style.display = 'none';
+        }
+      }, 800);
+    }
+  });
+
+  if (content) {
+    content.addEventListener('mouseenter', function () {
+      content.style.display = 'block';
+    });
+    content.addEventListener('mouseleave', function () {
+      setTimeout(function() {
+        if (!drop.matches(':hover') && !content.matches(':hover')) {
+          content.style.display = 'none';
+        }
+      }, 800);
+    });
+  }
+});
+</script>
 </body>
 </html>
 
