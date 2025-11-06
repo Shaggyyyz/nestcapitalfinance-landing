@@ -49,17 +49,43 @@
       color: #606060;
     }
 
-    .hero {
-      min-height: 90vh;
-      background: linear-gradient( rgba(18,20,36,0.78), rgba(18,20,36,0.90)), url('YOUR-HERO-IMAGE-LINK') center/cover no-repeat;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      position: relative;
-      padding-left: 10vw;
-      padding-top: 15vh;
+.hero {
+  position: relative;
+  min-height: 90vh;
+  overflow: hidden;
+  padding-left: 10vw;
+  padding-top: 15vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  color: #fff;
+}
+    .hero-slideshow {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 0;
+      overflow: hidden;
     }
+    .hero-slideshow .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+    .hero-slideshow .slide.active {
+      opacity: 1;
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+    }
+
     .hero h1 {
       font-size: 3.2rem;
       font-weight: 700;
@@ -128,9 +154,11 @@
   </header>
 <div class="hero">
   <div class="hero-slideshow">
-    <div class="slide active" style="background-image: url('image1.jpg');"></div>
-    <div class="slide" style="background-image: url('image2.jpg');"></div>
-    <div class="slide" style="background-image: url('image3.jpg');"></div>
+    <div class="slide active" style="background-image: url('https://raw.githubusercontent.com/Shaggyyyz/nestcapitalfinance-landing/refs/heads/main/image1.jpeg');"></div>
+    <div class="slide" style="background-image: url('https://raw.githubusercontent.com/Shaggyyyz/nestcapitalfinance-landing/refs/heads/main/image2.jpeg');"></div>
+    <div class="slide" style="background-image: url('https://raw.githubusercontent.com/Shaggyyyz/nestcapitalfinance-landing/refs/heads/main/image3.jpeg');"></div>
+    <div class="slide" style="background-image: url('https://raw.githubusercontent.com/Shaggyyyz/nestcapitalfinance-landing/refs/heads/main/image4.jpeg');"></div>
+    <div class="slide" style="background-image: url('https://raw.githubusercontent.com/Shaggyyyz/nestcapitalfinance-landing/refs/heads/main/image5.jpeg');"></div>
     <!-- add more slides as needed -->
   </div>
   <div class="hero-content">
@@ -180,6 +208,18 @@
   <footer>
     &copy; 2025 Nest Capital Finance | All Rights Reserved
   </footer>
+  <script>
+  const slides = document.querySelectorAll('.hero-slideshow .slide');
+  let currentSlide = 0;
+  const slideInterval = setInterval(nextSlide, 5000);
+
+  function nextSlide() {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide+1) % slides.length;
+    slides[currentSlide].classList.add('active');
+  }
+</script>
+
 </body>
 </html>
 
