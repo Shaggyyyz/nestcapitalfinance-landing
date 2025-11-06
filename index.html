@@ -27,15 +27,73 @@
       margin-top: 2.5rem;
       filter: brightness(0) invert(1);
     }
-    nav {
-      flex: 1;
-      display: flex;
-      justify-content: flex-end;
-      gap: 2.8rem; /* Spacing between nav links */
-      margin-top: 2.6rem;
-      align-items: flex-start;
-      padding-right: 3rem;
-    }
+nav {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 2.8rem;
+  margin-top: 2.6rem;
+  align-items: flex-start;
+  padding-right: 3rem;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: color 0.2s;
+  letter-spacing: .5px;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #232b34;
+  min-width: 200px;
+  box-shadow: 0 8px 18px 0 rgba(0,0,0,0.22);
+  border-radius: 7px;
+  margin-top: .7rem;
+  z-index: 1001;
+  padding: 0.4rem 0;
+}
+
+.dropdown-content a {
+  color: #fff;
+  padding: 0.9rem 1.5rem;
+  text-decoration: none;
+  display: block;
+  font-size: 1rem;
+  transition: background .17s, color .17s;
+  border-radius: 4px;
+}
+
+.dropdown-content a:hover {
+  background-color: #363d48;
+  color: #b6befb;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+nav a, .dropbtn {
+  color: #fff;
+}
+nav a:hover, .dropbtn:hover {
+  color: #606060;
+}
     nav a {
       color: #fff;
       text-decoration: none;
