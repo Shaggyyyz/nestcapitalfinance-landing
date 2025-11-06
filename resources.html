@@ -224,7 +224,7 @@
     }
     
     .resource-card:hover .resource-icon { 
-      color: #ffffff;
+      color: #ffffff !important;
     }
     
     .resource-title {
@@ -255,9 +255,10 @@
       padding: 2rem 1.5rem;
       box-shadow: 0 4px 12px #191a2336;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100px;
+      min-height: 140px;
       transition: transform 0.3s cubic-bezier(.23,1.08,.66,.99), box-shadow 0.3s;
       opacity: 0;
       transform: translateY(60px);
@@ -276,6 +277,17 @@
     .lender-item:hover {
       transform: scale(1.05);
       box-shadow: 0 10px 25px #4a4f7f80;
+    }
+    
+    .lender-item:hover .lender-icon {
+      color: #ffffff !important;
+    }
+    
+    .lender-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.8rem;
+      color: #2563eb;
+      transition: color 0.3s;
     }
     
     .lender-item h4 {
@@ -316,6 +328,17 @@
     .blog-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 25px #4a4f7f80;
+    }
+    
+    .blog-card:hover .blog-icon {
+      color: #ffffff !important;
+    }
+    
+    .blog-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #2563eb;
+      transition: color 0.3s;
     }
     
     .blog-date {
@@ -402,9 +425,13 @@
     .faq-question i {
       font-size: 1.3rem;
       color: #2563eb;
-      transition: transform 0.3s;
+      transition: transform 0.3s, color 0.3s;
       flex-shrink: 0;
       margin-left: 1rem;
+    }
+    
+    .faq-item:hover .faq-question i {
+      color: #ffffff;
     }
     
     .faq-item.active .faq-question i {
@@ -551,27 +578,35 @@
       <p class="section-intro">We work with 60+ trusted lenders across Australia, giving you access to competitive rates and tailored loan solutions.</p>
       <div class="lender-grid">
         <div class="lender-item">
+          <div class="lender-icon"><i class="ri-bank-line"></i></div>
           <h4>Commonwealth Bank</h4>
         </div>
         <div class="lender-item">
+          <div class="lender-icon"><i class="ri-bank-line"></i></div>
           <h4>Westpac</h4>
         </div>
         <div class="lender-item">
+          <div class="lender-icon"><i class="ri-bank-line"></i></div>
           <h4>ANZ</h4>
         </div>
         <div class="lender-item">
+          <div class="lender-icon"><i class="ri-bank-line"></i></div>
           <h4>NAB</h4>
         </div>
         <div class="lender-item">
+          <div class="lender-icon"><i class="ri-bank-line"></i></div>
           <h4>Macquarie Bank</h4>
         </div>
         <div class="lender-item">
+          <div class="lender-icon"><i class="ri-bank-line"></i></div>
           <h4>ING</h4>
         </div>
         <div class="lender-item">
+          <div class="lender-icon"><i class="ri-bank-line"></i></div>
           <h4>Bankwest</h4>
         </div>
         <div class="lender-item">
+          <div class="lender-icon"><i class="ri-links-line"></i></div>
           <h4>And 50+ More</h4>
         </div>
       </div>
@@ -583,24 +618,28 @@
       <p class="section-intro">Stay informed with expert articles on property finance, market trends, and homeownership tips.</p>
       <div class="blog-grid">
         <div class="blog-card">
+          <div class="blog-icon"><i class="ri-home-smile-line"></i></div>
           <div class="blog-date">November 5, 2025</div>
           <h3>First Home Buyer's Guide for 2025</h3>
           <p>Everything you need to know about grants, schemes, and getting your foot on the property ladder in today's market.</p>
           <a href="#" class="blog-link">Read More →</a>
         </div>
         <div class="blog-card">
+          <div class="blog-icon"><i class="ri-line-chart-line"></i></div>
           <div class="blog-date">October 28, 2025</div>
           <h3>Fixed vs Variable: Which is Right for You?</h3>
           <p>Understanding the pros and cons of fixed and variable interest rates to make an informed decision.</p>
           <a href="#" class="blog-link">Read More →</a>
         </div>
         <div class="blog-card">
+          <div class="blog-icon"><i class="ri-building-4-line"></i></div>
           <div class="blog-date">October 15, 2025</div>
           <h3>Investment Property Tax Benefits Explained</h3>
           <p>Maximize your returns by understanding depreciation, negative gearing, and deductions for property investors.</p>
           <a href="#" class="blog-link">Read More →</a>
         </div>
         <div class="blog-card">
+          <div class="blog-icon"><i class="ri-arrow-up-circle-line"></i></div>
           <div class="blog-date">October 2, 2025</div>
           <h3>How to Improve Your Credit Score</h3>
           <p>Practical steps to boost your credit rating and increase your chances of loan approval with better rates.</p>
@@ -743,3 +782,4 @@
   </script>
 </body>
 </html>
+
