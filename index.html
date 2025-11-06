@@ -7,6 +7,23 @@
   <!-- Import Fira Sans Light font -->
   <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&display=swap" rel="stylesheet" />
   <style>
+    body.mobile header img {
+  height: 54px;
+  margin-left: 0.5rem;
+  margin-top: 0.7rem;
+}
+body.desktop header img {
+  height: 100px;
+  margin-left: 4rem;
+  margin-top: 2.5rem;
+}
+body.mobile .hero {
+  padding-left: 0.5rem;
+}
+body.desktop .hero {
+  padding-left: 4rem;
+}
+
     body {
       font-family: 'Fira Sans', Arial, sans-serif;
       font-weight: 300;
@@ -381,6 +398,20 @@
   <footer>
     &copy; 2025 Nest Capital Finance | All Rights Reserved
   </footer>
+  <script>
+function isMobileDevice() {
+  return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent);
+}
+
+if (isMobileDevice()) {
+  // Mobile-specific tweaks
+  document.body.classList.add('mobile'); // Add a mobile class to body
+} else {
+  // Desktop-specific tweaks
+  document.body.classList.add('desktop'); // Add a desktop class to body
+}
+</script>
+
   <script>
     const slides = document.querySelectorAll('.hero-slideshow .slide');
     let currentSlide = 0;
