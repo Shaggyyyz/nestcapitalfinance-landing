@@ -6,15 +6,6 @@
   <title>Contact Us - Nest Capital Finance</title>
   <link href="https://fonts.googleapis.com/css?family=Montserrat:600,400&display=swap" rel="stylesheet" />
   <style>
-     input::placeholder,
-textarea::placeholder {
-  color: #8c92ac;              /* Light grey/blue for readability */
-  font-family: inherit;        /* Ensures uses same font as input */
-  font-size: 1rem;             /* Uniform font size */
-  font-weight: 300;            /* Matches your 'reason to contact' example */
-  opacity: 1;                  /* Full opacity for visibility */
-  letter-spacing: 0;           /* No extra spacing */
-}
     body {
       font-family: 'Montserrat', Arial, sans-serif;
       background: #181820;
@@ -172,6 +163,15 @@ textarea::placeholder {
       outline: none;
       transition: border 0.2s;
     }
+    input::placeholder,
+textarea::placeholder {
+  color: #8c92ac;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 300;
+  opacity: 1;
+  letter-spacing: 0;
+}
     input:focus, textarea:focus {
       border: 1.5px solid #2563eb;
     }
