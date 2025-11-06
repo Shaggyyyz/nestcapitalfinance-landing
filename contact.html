@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contact Us - Nest Capital Finance</title>
   <link href="https://fonts.googleapis.com/css?family=Montserrat:600,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
   <style>
     body {
       font-family: 'Montserrat', Arial, sans-serif;
@@ -159,10 +160,16 @@
       background: #232330;
       color: #fff;
       font-size: 1rem;
+      font-family: inherit;
+      font-weight: 300;
       resize: none;
       outline: none;
       transition: border 0.2s;
     }
+    input:focus, textarea:focus {
+      border: 1.5px solid #2563eb;
+    }
+    /* Uniform placeholder style for all browsers */
     input::placeholder,
     textarea::placeholder {
       color: #8c92ac;
@@ -172,10 +179,52 @@
       opacity: 1;
       letter-spacing: 0;
     }
-    input:focus, textarea:focus {
-      border: 1.5px solid #2563eb;
+    input::-webkit-input-placeholder,
+    textarea::-webkit-input-placeholder {
+      color: #8c92ac;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 300;
+      opacity: 1;
+      letter-spacing: 0;
     }
-    
+    input:-ms-input-placeholder,
+    textarea:-ms-input-placeholder {
+      color: #8c92ac;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 300;
+      opacity: 1;
+      letter-spacing: 0;
+    }
+    input::-ms-input-placeholder,
+    textarea::-ms-input-placeholder {
+      color: #8c92ac;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 300;
+      opacity: 1;
+      letter-spacing: 0;
+    }
+    input::-moz-placeholder,
+    textarea::-moz-placeholder {
+      color: #8c92ac;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 300;
+      opacity: 1;
+      letter-spacing: 0;
+    }
+    input:-moz-placeholder,
+    textarea:-moz-placeholder {
+      color: #8c92ac;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 300;
+      opacity: 1;
+      letter-spacing: 0;
+    }
+
     .cta-button {
       width: 100%;
       background: #2563eb;
@@ -216,62 +265,7 @@
       .form-grid { grid-template-columns: 1fr; gap: 0.48rem 0; }
       label { justify-self: start; text-align: left; margin-top: 0.7rem; }
     }
-    /* Placeholder style for all modern browsers */
-input::placeholder,
-textarea::placeholder {
-  color: #8c92ac;
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: 300;
-  opacity: 1;
-  letter-spacing: 0;
-}
-
-/* Chrome, Safari, Opera */
-input::-webkit-input-placeholder,
-textarea::-webkit-input-placeholder {
-  color: #8c92ac;
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: 300;
-  opacity: 1;
-  letter-spacing: 0;
-}
-
-/* Firefox 19+ */
-input::-moz-placeholder,
-textarea::-moz-placeholder {
-  color: #8c92ac;
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: 300;
-  opacity: 1;
-  letter-spacing: 0;
-}
-
-/* IE 10+ */
-input:-ms-input-placeholder,
-textarea:-ms-input-placeholder {
-  color: #8c92ac;
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: 300;
-  opacity: 1;
-  letter-spacing: 0;
-}
-
-/* Firefox 18- */
-input:-moz-placeholder,
-textarea:-moz-placeholder {
-  color: #8c92ac;
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: 300;
-  opacity: 1;
-  letter-spacing: 0;
-}
   </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
 </head>
 <body>
   <header>
