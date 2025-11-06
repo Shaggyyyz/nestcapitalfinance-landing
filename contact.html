@@ -100,12 +100,17 @@ input:focus, textarea:focus {
   padding: 1.15rem 0;
   font-size: 1.15rem;
   font-weight: 700;
-  border-radius: 2rem;
+  border-radius: 7px;         /* Was 2rem - now square */
   margin-top: .7rem;
   box-shadow: 0 4px 20px #232f3e19;
   letter-spacing: .04em;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.18s, color 0.18s, transform 0.09s;
+}
+    .cta-button:active {
+  transform: scale(0.965);
+  background: #1d47b8; /* Slightly darker when pressed */
+  box-shadow: 0 2px 10px #232f3e40;
 }
 .cta-button:hover {
   background: #1a2a90;
