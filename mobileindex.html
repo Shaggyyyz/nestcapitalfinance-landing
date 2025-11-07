@@ -147,6 +147,15 @@
       pointer-events: none;
       z-index: 2;
     }
+.hero::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0; height: 140px;
+  pointer-events: none;
+  z-index: 2;
+  /* Match background color and fade out below images */
+  background: linear-gradient(to bottom, rgba(24,24,32,0) 0%, #181820 100%);
+}
 
     .hero-content {
       position: relative;
