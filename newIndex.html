@@ -7,39 +7,253 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:600,400&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet" />
   <style>
-    html{box-sizing:border-box;}*,*:before,*:after{box-sizing:inherit;}
-    body{font-family:'Montserrat',Arial,sans-serif;background:#181820;color:#e8e6ff;margin:0;}
-    header{width:100%;background:#181820;display:flex;align-items:flex-start;padding:0;position:relative;z-index:99;}
-    header img{height:68px;margin-left:1.2rem;margin-top:2rem;filter:brightness(0) invert(1);display:inline-block;transition:height .2s;}
-    nav{flex:1;display:flex;justify-content:flex-end;align-items:flex-start;padding-right:2rem;margin-top:2rem;gap:2rem;flex-wrap:wrap;}
-    .dropdown{position:relative;display:inline-block;}
-    .dropbtn,nav>a{color:#fff;text-decoration:none;font-weight:600;font-size:1rem;background:none;border:none;outline:none;cursor:pointer;padding:0;font-family:inherit;margin:0 0.3rem;}
-    .dropdown-content{display:none;position:absolute;left:0;background-color:#232b34;min-width:170px;box-shadow:0 8px 18px 0 rgba(0,0,0,0.22);border-radius:7px;margin-top:.7rem;z-index:1001;padding:0.4rem 0;font-size:0.98em;}
-    .dropdown-content a{color:#fff;padding:0.8rem 1rem;text-decoration:none;display:block;transition:background .17s,color .17s;border-radius:4px;white-space:nowrap;}
-    .dropdown-content a:hover{background-color:#363d48;color:#b6befb;}
-    .dropdown:hover .dropdown-content,.dropdown:active .dropdown-content{display:block;}
-    main{padding-top:110px;min-height:100vh;}
-    section{background:#22232c;border-radius:12px;margin:1.3rem auto;max-width:1000px;box-shadow:0 2px 12px #04051249;padding:1.2rem 1rem;}
-    h1{font-size:2.2rem;text-align:center;font-weight:700;color:#b6befb;}
-    .hero{max-width:700px;margin:2rem auto;line-height:1.5;text-align:center;}
-    .services-animated{display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;}
-    .service-card{width:280px;background:#2a2b36;border-radius:10px;padding:1.4rem 1.1rem;box-shadow:0 6px 18px #181a2030;display:flex;flex-direction:column;align-items:center;transition:transform .25s,box-shadow .25s;margin-bottom:0.3rem;}
-    .service-card:hover{transform:scale(1.05);box-shadow:0 10px 25px #4a4f7f50;}
-    .service-icon{font-size:2.4rem;margin-bottom:1rem;color:#2563eb;transition:color 0.3s;}
-    .service-card:hover .service-icon{color:#fff!important;}
-    .service-title{font-size:1.18rem;font-weight:bold;color:#b6befb;margin-bottom:.55rem;text-align:center;letter-spacing:.04em;}
-    .service-desc{font-size:0.98rem;color:#c0c2d4;text-align:center;line-height:1.5;}
-    @media (max-width:900px){
-      header img{height:50px;margin-left:0.5rem;margin-top:1rem;}
-      nav{gap:1rem;padding-right:0.7rem;margin-top:1.3rem;font-size:0.95rem;}
-      main,section{padding-left:0.2rem;padding-right:0.2rem;}
-      .services-animated{gap:1.3rem;}
-      .service-card{width:97vw;max-width:340px;margin-left:auto;margin-right:auto;}
+    html { box-sizing: border-box; }
+    *, *:before, *:after { box-sizing: inherit; }
+
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: #181820;
+      color: #e8e6ff;
+      margin: 0;
     }
-    @media (max-width:700px){
-      .service-title{font-size:1rem;}
-      .service-desc{font-size:0.93rem;}
-      .service-card{max-width:99vw;}
+
+    header {
+      width: 100%;
+      background: #181820;
+      display: flex;
+      align-items: flex-start;
+      padding: 0;
+      position: relative;
+      z-index: 99;
+    }
+
+    header img {
+      height: 68px;
+      margin-left: 1.2rem;
+      margin-top: 2rem;
+      filter: brightness(0) invert(1);
+      display: inline-block;
+      transition: height 0.2s;
+    }
+
+    nav {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+      padding-right: 2rem;
+      margin-top: 2rem;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropbtn, nav > a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      background: none;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 0;
+      font-family: inherit;
+      margin: 0 0.3rem;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      left: 0;
+      right: auto;
+      background-color: #232b34;
+      min-width: 170px;
+      box-shadow: 0 8px 18px 0 rgba(0, 0, 0, 0.22);
+      border-radius: 7px;
+      margin-top: 0.7rem;
+      z-index: 1001;
+      padding: 0.4rem 0;
+      font-size: 0.98em;
+    }
+
+    .dropdown-content a {
+      color: #fff;
+      padding: 0.8rem 1rem;
+      text-decoration: none;
+      display: block;
+      transition: background 0.17s, color 0.17s;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #363d48;
+      color: #b6befb;
+    }
+
+    .dropdown:hover .dropdown-content,
+    .dropdown:active .dropdown-content {
+      display: block;
+    }
+
+    main {
+      padding-top: 110px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      text-align: center;
+      font-weight: 700;
+      color: #b6befb;
+      margin: 2rem 0 1rem 0;
+    }
+
+    .hero {
+      max-width: 1200px;
+      margin: 0 auto 4rem auto;
+      padding: 0 1rem;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .services-section {
+      max-width: 1000px;
+      margin: 0 auto 3rem auto;
+      padding: 2rem 1.5rem;
+      background: #22232c;
+      border-radius: 14px;
+      box-shadow: 0 1px 12px #0405123a;
+    }
+
+    .services-animated {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .service-card {
+      width: 280px;
+      background: #2a2b36;
+      border-radius: 10px;
+      padding: 1.5rem 1rem;
+      box-shadow: 0 6px 18px #181a2030;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.25s, box-shadow 0.25s;
+      margin-bottom: 1rem;
+    }
+
+    .service-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px #4a4f7f50;
+    }
+
+    .service-icon {
+      font-size: 2.6rem;
+      margin-bottom: 1rem;
+      color: #2563eb;
+      transition: color 0.3s;
+    }
+
+    .service-card:hover .service-icon {
+      color: #fff !important;
+    }
+
+    .service-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #b6befb;
+      margin-bottom: 0.5rem;
+      text-align: center;
+      letter-spacing: .04em;
+    }
+
+    .service-desc {
+      font-size: 1rem;
+      color: #c0c2d4;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .testimonials {
+      max-width: 1000px;
+      margin: 0 auto 3rem auto;
+      padding: 2rem 1.2rem;
+      text-align: center;
+      color: #c0c2d4;
+      font-size: 1.05rem;
+      font-weight: 400;
+      line-height: 1.5;
+      user-select: none;
+    }
+
+    .testimonial-quote {
+      font-weight: 700;
+      color: #b6befb;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 900px) {
+      header img {
+        height: 50px;
+        margin-left: 0.5rem;
+        margin-top: 1rem;
+      }
+      nav {
+        gap: 1rem;
+        padding-right: 0.7rem;
+        margin-top: 1.3rem;
+        font-size: 0.95rem;
+      }
+      main, .services-section {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+      }
+      .services-animated {
+        gap: 1.25rem;
+      }
+      .service-card {
+        width: 97vw;
+        max-width: 350px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero {
+        margin-bottom: 2rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.6rem;
+        margin-top: 1.5rem;
+      }
+      .service-title {
+        font-size: 1.1rem;
+      }
+      .service-desc {
+        font-size: 0.9rem;
+      }
+      .testimonial-quote {
+        font-size: 1rem;
+      }
+      .testimonials {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
@@ -63,7 +277,7 @@
         </div>
       </div>
       <div class="dropdown">
-        <a href="#" class="dropbtn">Partners</a>
+        <a href="#">Partners</a>
         <div class="dropdown-content">
           <a href="#">Coming Soon</a>
         </div>
@@ -84,10 +298,10 @@
     <section>
       <h1>Dream. Plan. Buy.</h1>
       <div class="hero">
-        Your trusted partner for home loans, property finance, and commercial finance.
+        <img src="image4.jpg" alt="Modern residential building" class="hero-image" />
       </div>
     </section>
-    <section>
+    <section class="services-section">
       <h1>Our Services</h1>
       <div class="services-animated">
         <div class="service-card">
@@ -110,15 +324,17 @@
     <section>
       <h1>About Nest Capital Finance</h1>
       <div class="hero">
-        At Nest Capital Finance, our mission is to simplify the journey to your dream property. Our award-nominated team combines industry experience, personal service, and insider access to leading lenders—earning 5-star client reviews every step of the way. Based in Australia, we support clients locally and overseas with tailored mortgage and property solutions.
+        <img src="image5-1.jpg" alt="House exterior evening" class="hero-image" />
+        <p>At Nest Capital Finance, our mission is to simplify the journey to your dream property. Our award-nominated team combines industry experience, personal service, and insider access to leading lenders—earning 5-star client reviews every step of the way. Based in Australia, we support clients locally and overseas with tailored mortgage and property solutions.</p>
       </div>
     </section>
     <section>
       <h1>Testimonials</h1>
-      <div class="hero">
-        <strong>“Nest Capital Finance made my home buying journey stress-free—professional, fast, and found a great rate for me.”</strong><br>– Chris, Melbourne
-        <br><br>
-        <strong>“Expert advice, clear communication, and genuine care. Couldn’t recommend them more highly.”</strong><br>– Priya, Sydney
+      <div class="testimonials">
+        <blockquote class="testimonial-quote">“Nest Capital Finance made my home buying journey stress-free—professional, fast, and found a great rate for me.”</blockquote>
+        <p>– Chris, Melbourne</p>
+        <blockquote class="testimonial-quote">“Expert advice, clear communication, and genuine care. Couldn’t recommend them more highly.”</blockquote>
+        <p>– Priya, Sydney</p>
       </div>
     </section>
   </main>
@@ -127,3 +343,4 @@
   </footer>
 </body>
 </html>
+
