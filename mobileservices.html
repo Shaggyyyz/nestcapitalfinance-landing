@@ -15,103 +15,117 @@
       color: #fff;
       overflow-x: hidden;
     }
+
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
       height: 70px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 0 1rem;
       background: transparent;
       z-index: 1000;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      transition: background-color 0.3s, box-shadow 0.3s;
       box-sizing: border-box;
+      padding: 0 1rem;
+      justify-content: space-between;
     }
     header.scrolled {
       background-color: #181820;
       box-shadow: 0 2px 12px rgba(0,0,0,0.75);
     }
-    header img {
+    .header-logo {
       height: 60px;
       filter: brightness(0) invert(1);
+      z-index: 1101;
     }
+
+    /* Menu button (hamburger icon) */
     .menu-toggle {
-      display: none;
+      display: flex;
       flex-direction: column;
-      width: 30px;
-      height: 22px;
+      width: 34px;
+      height: 28px;
+      justify-content: center;
+      align-items: center;
       cursor: pointer;
-      justify-content: space-between;
-      z-index: 1100;
+      z-index: 1102;
+      margin-right: 0.5rem;
     }
     .menu-toggle span {
       display: block;
+      width: 28px;
       height: 4px;
-      background-color: white;
-      border-radius: 2px;
-      transition: transform 0.3s ease, opacity 0.3s ease;
+      background-color: #fff;
+      border-radius: 3px;
+      margin: 3px 0;
+      transition: 0.3s;
     }
-    nav {
+    .menu-toggle.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .menu-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-toggle.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Slide In Menu */
+    .menu-panel {
+      position: fixed;
+      top: 0; right: 0;
+      width: 260px;
+      height: 100%;
+      background: #181820f8;
+      box-shadow: -4px 0 24px #00000088;
       display: flex;
-      gap: 1.6rem;
-      align-items: center;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 88px 2rem 2rem 2rem;
+      gap: 1.5rem;
+      z-index: 1200;
+      transform: translateX(100%);
+      transition: transform 0.33s cubic-bezier(.68,-0.55,.27,1.55);
+      opacity: 0;
+      pointer-events: none;
     }
-    nav a,
-    .dropbtn {
+    .menu-panel.open {
+      transform: translateX(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .menu-panel a {
       color: #fff;
-      text-decoration: none;
+      font-size: 1.18rem;
       font-weight: 600;
-      font-size: 1.1rem;
-      background: none;
-      border: none;
-      outline: none;
-      cursor: pointer;
-      font-family: inherit;
-      position: relative;
-      z-index: 1002;
-      margin: 0 0.35rem;
+      text-decoration: none;
+      margin-bottom: 0.6rem;
+      padding: 0.5rem 0;
+      width: 100%;
+      border-radius: 6px;
+      transition: background 0.18s, color 0.18s;
       letter-spacing: .04em;
     }
-    nav a:hover, .dropbtn:hover {
-      color: #2563eb;
-    }
-    .dropdown {
-      position: relative;
-    }
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background-color: #232b34;
-      min-width: 210px;
-      box-shadow: 0 8px 18px 0 rgba(0,0,0,0.22);
-      border-radius: 7px;
-      z-index: 999;
-      padding: 0.4rem 0;
-      margin-top: 0.7rem;
-    }
-    .dropdown-content a {
-      color: #fff;
-      padding: 0.9rem 1.5rem;
-      text-decoration: none;
-      display: block;
-      font-size: 1rem;
-      transition: background .17s, color .17s;
-      border-radius: 4px;
-      white-space: nowrap;
-    }
-    .dropdown-content a:hover {
-      background-color: #363d48;
+    .menu-panel a:hover {
+      background: #232b34;
       color: #b6befb;
     }
-    .dropdown:hover .dropdown-content,
-    .dropdown:focus-within .dropdown-content {
-      display: block;
+    @media (max-width: 600px) {
+      .menu-panel {
+        width: 90vw;
+        padding: 82px 1.3rem 1.3rem 1.3rem;
+      }
+      header {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+      .header-logo {
+        height: 45px;
+      }
     }
+
     main {
-      padding-top: 90px;
+      padding-top: 86px;
       max-width: 1024px;
       margin: 0 auto;
       padding-left: 1rem;
@@ -119,7 +133,6 @@
       box-sizing: border-box;
     }
 
-    /* Service section and animated cards */
     .services-section {
       max-width: 1000px;
       margin: 2rem auto;
@@ -194,7 +207,6 @@
       text-align: center;
       line-height: 1.5;
     }
-    /* Mobile optimization */
     @media (max-width: 900px) {
       .services-animated {
         flex-direction: column;
@@ -219,9 +231,6 @@
       }
     }
     @media (max-width: 420px) {
-      header img {
-        height: 50px;
-      }
       h1 {
         font-size: 1.42rem;
       }
@@ -230,38 +239,17 @@
 </head>
 <body>
   <header>
-    <img src="https://raw.githubusercontent.com/Shaggyyyz/nestcapitalfinance-landing/refs/heads/main/NFCLogo1.png" alt="Nest Capital Finance Logo" />
-    <nav>
-      <div class="dropdown">
-        <a href="Services.html" class="dropbtn">Services</a>
-        <div class="dropdown-content">
-          <a href="Services.html">Home Loans</a>
-          <a href="Services.html">Property Advisory</a>
-          <a href="Services.html">Asset Finance</a>
-        </div>
-      </div>
-      <div class="dropdown">
-        <a href="about.html" class="dropbtn">About</a>
-        <div class="dropdown-content">
-          <a href="about.html#mission">Company Mission</a>
-          <a href="about.html#team">Meet Our Team</a>
-        </div>
-      </div>
-      <div class="dropdown">
-        <a href="#partners" class="dropbtn">Partners</a>
-        <div class="dropdown-content">
-          <a href="#">Coming Soon</a>
-        </div>
-      </div>
-      <div class="dropdown">
-        <a href="resources.html" class="dropbtn">Resources</a>
-        <div class="dropdown-content">
-          <a href="resources.html#calculators">Home Loan Calculators</a>
-          <a href="resources.html#lender-panel">Lender Panel</a>
-          <a href="resources.html#blogs">Blogs</a>
-          <a href="resources.html#faqs">FAQs</a>
-        </div>
-      </div>
+    <img class="header-logo" src="https://raw.githubusercontent.com/Shaggyyyz/nestcapitalfinance-landing/refs/heads/main/NFCLogo1.png" alt="Nest Capital Finance Logo" />
+    <div class="menu-toggle" id="menuToggle" aria-label="Toggle menu" tabindex="0" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav id="menuPanel" class="menu-panel">
+      <a href="Services.html">Services</a>
+      <a href="about.html">About</a>
+      <a href="#partners">Partners</a>
+      <a href="resources.html">Resources</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
@@ -323,41 +311,29 @@
     </section>
   </main>
   <script>
-    // Dropdown instant switcher for quick nav
-    document.querySelectorAll('.dropdown').forEach(function(drop, idx, arr) {
-      var content = drop.querySelector('.dropdown-content');
+    // Hamburger menu toggle animation
+    const menuToggle = document.getElementById('menuToggle');
+    const menuPanel = document.getElementById('menuPanel');
 
-      drop.addEventListener('mouseenter', function () {
-        arr.forEach(function(other) {
-          var otherContent = other.querySelector('.dropdown-content');
-          if (otherContent && otherContent !== content) {
-            otherContent.style.display = 'none';
-          }
-        });
-        if (content) content.style.display = 'block';
-      });
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('open');
+      menuPanel.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', menuPanel.classList.contains('open'));
+    });
 
-      drop.addEventListener('mouseleave', function() {
-        if (content) {
-          setTimeout(function() {
-            if (!drop.matches(':hover') && !content.matches(':hover')) {
-              content.style.display = 'none';
-            }
-          }, 600);
-        }
-      });
+    // Accessibility: allow Enter key to open menu
+    menuToggle.addEventListener('keydown', function(e) {
+      if(e.key === "Enter" || e.key === " ") {
+        menuToggle.click();
+      }
+    });
 
-      if (content) {
-        content.addEventListener('mouseenter', function () {
-          content.style.display = 'block';
-        });
-        content.addEventListener('mouseleave', function () {
-          setTimeout(function() {
-            if (!drop.matches(':hover') && !content.matches(':hover')) {
-              content.style.display = 'none';
-            }
-          }, 600);
-        });
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!menuPanel.contains(e.target) && !menuToggle.contains(e.target)) {
+        menuPanel.classList.remove('open');
+        menuToggle.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', "false");
       }
     });
 
@@ -372,3 +348,4 @@
   </script>
 </body>
 </html>
+
