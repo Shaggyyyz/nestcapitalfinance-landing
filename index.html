@@ -368,6 +368,19 @@
       }
     }
   </style>
+  <script>
+  // Define your mobile site URL (change to your actual mobile site URL)
+  const mobileSiteUrl = "https://m.yoursite.com";
+
+  // Check if already on mobile redirect site to prevent loops
+  const isOnMobileSite = window.location.href.includes("m.yoursite.com");
+
+  // Detect mobile viewport width & redirect accordingly
+  if (window.matchMedia("(max-width: 768px)").matches && !isOnMobileSite) {
+    window.location.href = mobileSiteUrl;
+  }
+</script>
+
 </head>
 <body>
   <header>
