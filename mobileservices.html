@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Our Services - Nest Capital Finance</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Fira Sans', Arial, sans-serif;
+      font-weight: 300;
+      background: #181820;
+      margin: 0;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 1rem;
+      background: transparent;
+      z-index: 1000;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      box-sizing: border-box;
+    }
+    header.scrolled {
+      background-color: #181820;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.75);
+    }
+    header img {
+      height: 60px;
+      filter: brightness(0) invert(1);
+    }
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      width: 30px;
+      height: 22px;
+      cursor: pointer;
+      justify-content: space-between;
+      z-index: 1100;
+    }
+    .menu-toggle span {
+      display: block;
+      height: 4px;
+      background-color: white;
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    nav {
+      display: flex;
+      gap: 1.6rem;
+      align-items: center;
+    }
+    nav a,
+    .dropbtn {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      background: none;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-family: inherit;
+      position: relative;
+      z-index: 1002;
+      margin: 0 0.35rem;
+      letter-spacing: .04em;
+    }
+    nav a:hover, .dropbtn:hover {
+      color: #2563eb;
+    }
+    .dropdown {
+      position: relative;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #232b34;
+      min-width: 210px;
+      box-shadow: 0 8px 18px 0 rgba(0,0,0,0.22);
+      border-radius: 7px;
+      z-index: 999;
+      padding: 0.4rem 0;
+      margin-top: 0.7rem;
+    }
+    .dropdown-content a {
+      color: #fff;
+      padding: 0.9rem 1.5rem;
+      text-decoration: none;
+      display: block;
+      font-size: 1rem;
+      transition: background .17s, color .17s;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+    .dropdown-content a:hover {
+      background-color: #363d48;
+      color: #b6befb;
+    }
+    .dropdown:hover .dropdown-content,
+    .dropdown:focus-within .dropdown-content {
+      display: block;
+    }
+    main {
+      padding-top: 90px;
+      max-width: 1024px;
+      margin: 0 auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      box-sizing: border-box;
+    }
+
+    /* Service section and animated cards */
+    .services-section {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 2rem 1.5rem;
+      background: #22232c;
+      border-radius: 14px;
+      box-shadow: 0 1px 12px #0405123a;
+    }
+    h1 {
+      font-size: 2.6rem;
+      margin-bottom: 2rem;
+      color: #b6befb;
+      text-align: center;
+      font-weight: 700;
+      letter-spacing: .015em;
+    }
+    .services-animated {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      justify-content: center;
+    }
+    .service-card {
+      width: 280px;
+      background: #2a2b36;
+      border-radius: 10px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 4px 12px #191a2336;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s cubic-bezier(.23,1.08,.66,.99), box-shadow 0.3s;
+      opacity: 0;
+      transform: translateY(60px);
+      animation: fadeUp 0.9s forwards;
+    }
+    .service-card:nth-child(1){ animation-delay: 0.1s;}
+    .service-card:nth-child(2){ animation-delay: 0.2s;}
+    .service-card:nth-child(3){ animation-delay: 0.3s;}
+    .service-card:nth-child(4){ animation-delay: 0.4s;}
+    .service-card:nth-child(5){ animation-delay: 0.5s;}
+    .service-card:nth-child(6){ animation-delay: 0.6s;}
+    .service-card:nth-child(7){ animation-delay: 0.7s;}
+    .service-card:nth-child(8){ animation-delay: 0.8s;}
+    .service-card:nth-child(9){ animation-delay: 0.9s;}
+    .service-card:nth-child(10){ animation-delay: 1s;}
+    .service-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px #4a4f7f80;
+    }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .service-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #2563eb;
+      transition: color 0.3s;
+    }
+    .service-card:hover .service-icon { color: #fff;}
+    .service-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: .8rem;
+      color: #b6befb;
+      text-align: center;
+      letter-spacing: .015em;
+    }
+    .service-desc {
+      font-size: 1.05rem;
+      color: #c0c2d4;
+      text-align: center;
+      line-height: 1.5;
+    }
+    /* Mobile optimization */
+    @media (max-width: 900px) {
+      .services-animated {
+        flex-direction: column;
+        align-items: center;
+      }
+      .service-card {
+        width: 90%;
+        max-width: 340px;
+      }
+    }
+    @media (max-width: 600px) {
+      .services-section,
+      main {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      .service-card {
+        padding: 1.2rem 0.7rem;
+      }
+    }
+    @media (max-width: 420px) {
+      header img {
+        height: 50px;
+      }
+      h1 {
+        font-size: 1.42rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://raw.githubusercontent.com/Shaggyyyz/nestcapitalfinance-landing/refs/heads/main/NFCLogo1.png" alt="Nest Capital Finance Logo" />
+    <nav>
+      <div class="dropdown">
+        <a href="Services.html" class="dropbtn">Services</a>
+        <div class="dropdown-content">
+          <a href="Services.html">Home Loans</a>
+          <a href="Services.html">Property Advisory</a>
+          <a href="Services.html">Asset Finance</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="about.html" class="dropbtn">About</a>
+        <div class="dropdown-content">
+          <a href="about.html#mission">Company Mission</a>
+          <a href="about.html#team">Meet Our Team</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#partners" class="dropbtn">Partners</a>
+        <div class="dropdown-content">
+          <a href="#">Coming Soon</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="resources.html" class="dropbtn">Resources</a>
+        <div class="dropdown-content">
+          <a href="resources.html#calculators">Home Loan Calculators</a>
+          <a href="resources.html#lender-panel">Lender Panel</a>
+          <a href="resources.html#blogs">Blogs</a>
+          <a href="resources.html#faqs">FAQs</a>
+        </div>
+      </div>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+  <main>
+    <section class="services-section">
+      <h1>Our Services</h1>
+      <div class="services-animated">
+        <div class="service-card">
+          <div class="service-icon"><i class="ri-home-4-line"></i></div>
+          <div class="service-title">First Home Buyer</div>
+          <div class="service-desc">Having an entourage makes it easier to buy your first home and get the right loan for your needs.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="ri-coins-line"></i></div>
+          <div class="service-title">Investor</div>
+          <div class="service-desc">Having an entourage means making the right decisions when buying your investment property.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="ri-refund-2-line"></i></div>
+          <div class="service-title">Refinancing</div>
+          <div class="service-desc">Refinancing is easy when you have an entourage to negotiate on your behalf with the lenders.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="ri-building-2-line"></i></div>
+          <div class="service-title">Commercial Finance</div>
+          <div class="service-desc">Making business decisions is simple when you’re getting the right advice from your entourage.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="ri-map-pin-2-line"></i></div>
+          <div class="service-title">Construction Finance</div>
+          <div class="service-desc">Making business decisions is simple when you’re getting the right advice from your entourage.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="ri-team-line"></i></div>
+          <div class="service-title">SMSF Finance</div>
+          <div class="service-desc">Entourage will help you to get the best deal on your SMSF loan.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="ri-map-pin-2-line"></i></div>
+          <div class="service-title">Development Site</div>
+          <div class="service-desc">Making business decisions is simple when you’re getting the right advice from your entourage.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="ri-home-4-line"></i></div>
+          <div class="service-title">Doctor Home Loans</div>
+          <div class="service-desc">Having an entourage makes it easier for doctors to buy residential and commercial property.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="ri-home-4-line"></i></div>
+          <div class="service-title">Lawyer Home Loans</div>
+          <div class="service-desc">Having an entourage makes it easier for lawyers to buy residential and commercial property.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="ri-building-3-line"></i></div>
+          <div class="service-title">Professional Athlete Home Loans</div>
+          <div class="service-desc">Having an entourage makes it easier for athletes to buy residential and commercial property.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    // Dropdown instant switcher for quick nav
+    document.querySelectorAll('.dropdown').forEach(function(drop, idx, arr) {
+      var content = drop.querySelector('.dropdown-content');
+
+      drop.addEventListener('mouseenter', function () {
+        arr.forEach(function(other) {
+          var otherContent = other.querySelector('.dropdown-content');
+          if (otherContent && otherContent !== content) {
+            otherContent.style.display = 'none';
+          }
+        });
+        if (content) content.style.display = 'block';
+      });
+
+      drop.addEventListener('mouseleave', function() {
+        if (content) {
+          setTimeout(function() {
+            if (!drop.matches(':hover') && !content.matches(':hover')) {
+              content.style.display = 'none';
+            }
+          }, 600);
+        }
+      });
+
+      if (content) {
+        content.addEventListener('mouseenter', function () {
+          content.style.display = 'block';
+        });
+        content.addEventListener('mouseleave', function () {
+          setTimeout(function() {
+            if (!drop.matches(':hover') && !content.matches(':hover')) {
+              content.style.display = 'none';
+            }
+          }, 600);
+        });
+      }
+    });
+
+    // Header scroll shadow
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 10) {
+        document.querySelector('header').classList.add('scrolled');
+      } else {
+        document.querySelector('header').classList.remove('scrolled');
+      }
+    });
+  </script>
+</body>
+</html>
