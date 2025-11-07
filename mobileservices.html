@@ -4,348 +4,491 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Our Services - Nest Capital Finance</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet" />
   <style>
     body {
       font-family: 'Fira Sans', Arial, sans-serif;
       font-weight: 300;
-      background: #181820;
       margin: 0;
+      background: #181820;
       color: #fff;
       overflow-x: hidden;
     }
-
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
       height: 70px;
       display: flex;
+      justify-content: space-between;
       align-items: center;
+      padding: 0 1rem;
       background: transparent;
       z-index: 1000;
       transition: background-color 0.3s, box-shadow 0.3s;
       box-sizing: border-box;
-      padding: 0 1rem;
-      justify-content: space-between;
     }
     header.scrolled {
       background-color: #181820;
       box-shadow: 0 2px 12px rgba(0,0,0,0.75);
     }
-    .header-logo {
+    header img {
       height: 60px;
       filter: brightness(0) invert(1);
-      z-index: 1101;
     }
-
-    /* Menu button (hamburger icon) */
+    /* menu button shows on mobile and desktop */
     .menu-toggle {
       display: flex;
       flex-direction: column;
-      width: 34px;
-      height: 28px;
-      justify-content: center;
-      align-items: center;
+      width: 30px;
+      height: 22px;
       cursor: pointer;
-      z-index: 1102;
-      margin-right: 0.5rem;
+      justify-content: space-between;
+      z-index: 1100;
     }
     .menu-toggle span {
       display: block;
-      width: 28px;
       height: 4px;
-      background-color: #fff;
-      border-radius: 3px;
-      margin: 3px 0;
-      transition: 0.3s;
+      background-color: white;
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
     }
     .menu-toggle.open span:nth-child(1) {
-      transform: translateY(7px) rotate(45deg);
+      transform: translateY(9px) rotate(45deg);
     }
     .menu-toggle.open span:nth-child(2) {
       opacity: 0;
     }
     .menu-toggle.open span:nth-child(3) {
-      transform: translateY(-7px) rotate(-45deg);
+      transform: translateY(-9px) rotate(-45deg);
     }
-
-    /* Slide In Menu */
-    .menu-panel {
+    nav {
       position: fixed;
-      top: 0; right: 0;
-      width: 260px;
-      height: 100%;
-      background: #181820f8;
-      box-shadow: -4px 0 24px #00000088;
-      display: flex;
+      top: 70px;
+      right: 0;
+      width: 220px;
+      height: calc(100% - 70px);
+      background: #181820;
       flex-direction: column;
-      align-items: flex-start;
-      padding: 88px 2rem 2rem 2rem;
-      gap: 1.5rem;
-      z-index: 1200;
+      display: flex;
+      padding: 1rem;
+      gap: 1rem;
+      box-shadow: -4px 0 16px rgba(0,0,0,0.7);
       transform: translateX(100%);
-      transition: transform 0.33s cubic-bezier(.68,-0.55,.27,1.55);
-      opacity: 0;
-      pointer-events: none;
+      transition: transform 0.3s ease-in-out;
+      overflow-y: auto;
+      box-sizing: border-box;
+      z-index: 1500;
     }
-    .menu-panel.open {
+    nav.open {
       transform: translateX(0);
-      opacity: 1;
-      pointer-events: auto;
     }
-    .menu-panel a {
+    nav a {
       color: #fff;
-      font-size: 1.18rem;
       font-weight: 600;
+      font-size: 1.1rem;
       text-decoration: none;
-      margin-bottom: 0.6rem;
-      padding: 0.5rem 0;
-      width: 100%;
+      cursor: pointer;
+      user-select: none;
       border-radius: 6px;
-      transition: background 0.18s, color 0.18s;
-      letter-spacing: .04em;
+      padding: 0.5rem 0.8rem;
+      transition: color 0.15s, background 0.15s;
     }
-    .menu-panel a:hover {
-      background: #232b34;
-      color: #b6befb;
+    nav a:hover {
+      color: #2563eb;
+      background: #22232c;
     }
-    @media (max-width: 600px) {
-      .menu-panel {
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+      }
+      nav {
         width: 90vw;
-        padding: 82px 1.3rem 1.3rem 1.3rem;
+        padding: 1.1rem;
+        top: 70px;
       }
-      header {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-      }
-      .header-logo {
-        height: 45px;
+      header img {
+        height: 50px;
       }
     }
-
     main {
-      padding-top: 86px;
-      max-width: 1024px;
+      padding-top: 90px;
+      max-width: 960px;
       margin: 0 auto;
       padding-left: 1rem;
       padding-right: 1rem;
       box-sizing: border-box;
     }
-
-    .services-section {
-      max-width: 1000px;
-      margin: 2rem auto;
-      padding: 2rem 1.5rem;
-      background: #22232c;
-      border-radius: 14px;
-      box-shadow: 0 1px 12px #0405123a;
+    .hero {
+      position: relative;
+      min-height: 90vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #fff;
+      padding-left: 1rem;
+      padding-right: 1rem;
     }
-    h1 {
-      font-size: 2.6rem;
-      margin-bottom: 2rem;
-      color: #b6befb;
-      text-align: center;
+    .hero-slideshow {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      filter: blur(3px);
+      transform: scale(1.05);
+    }
+    .slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity 1.5s;
+      border: none;
+      box-shadow: none;
+    }
+    .slide.active {
+      opacity: 1;
+      z-index: 1;
+    }
+    .hero-slideshow::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0,0,0,0.35);
+      pointer-events: none;
+      z-index: 2;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: 0; height: 140px;
+      pointer-events: none;
+      z-index: 2;
+      background: linear-gradient(to bottom, rgba(24,24,32,0) 0%, #181820 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      max-width: 600px;
+      padding-left: 1rem;
+    }
+    .hero h1 {
+      font-size: 3.2rem;
       font-weight: 700;
-      letter-spacing: .015em;
+      margin: 0 0 1.6rem 0;
+      text-shadow: 0 6px 16px #18182080;
     }
-    .services-animated {
+    .hero p {
+      font-size: 1.3rem;
+      margin: 0 0 2.5rem 0;
+      max-width: 520px;
+      text-shadow: 0 2px 5px #191a24af;
+    }
+    .cta-button {
+      background: #fff;
+      color: #191a2b;
+      border: none;
+      padding: 1rem 2.3rem;
+      font-size: 1.1rem;
+      border-radius: 7px;
+      font-weight: 700;
+      box-shadow: 0 4px 20px #232f3e19;
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s, transform 0.09s;
+      letter-spacing: .04em;
+      width: 100%;
+      max-width: 330px;
+      display: block;
+    }
+    .cta-button:hover {
+      background: #2563eb;
+      color: #fff;
+    }
+    #services {
+      margin-top: 3rem;
+    }
+    #services h2 {
+      color: #b6befb;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+    .services {
       display: flex;
       flex-wrap: wrap;
-      gap: 2.5rem;
+      gap: 1.5rem;
       justify-content: center;
     }
-    .service-card {
-      width: 280px;
+    .service {
       background: #2a2b36;
       border-radius: 10px;
-      padding: 2rem 1.5rem;
+      padding: 1.5rem 1rem;
+      width: 280px;
+      color: #c0c2d4;
       box-shadow: 0 4px 12px #191a2336;
+      text-align: center;
+    }
+    .service h3 {
+      color: #b6befb;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+    }
+    #about {
+      margin: 3rem 0;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: #e8e6ff;
+    }
+    .testimonials {
+      margin-top: 2rem;
+      color: #c0c2d4;
+      font-style: italic;
+      text-align: center;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .testimonials strong {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #b6befb;
+    }
+    footer.footer-main {
+      background: #1d1c22;
+      color: #bbb;
+      padding: 2rem 1rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      transition: transform 0.3s cubic-bezier(.23,1.08,.66,.99), box-shadow 0.3s;
-      opacity: 0;
-      transform: translateY(60px);
-      animation: fadeUp 0.9s forwards;
+      gap: 1rem;
     }
-    .service-card:nth-child(1){ animation-delay: 0.1s;}
-    .service-card:nth-child(2){ animation-delay: 0.2s;}
-    .service-card:nth-child(3){ animation-delay: 0.3s;}
-    .service-card:nth-child(4){ animation-delay: 0.4s;}
-    .service-card:nth-child(5){ animation-delay: 0.5s;}
-    .service-card:nth-child(6){ animation-delay: 0.6s;}
-    .service-card:nth-child(7){ animation-delay: 0.7s;}
-    .service-card:nth-child(8){ animation-delay: 0.8s;}
-    .service-card:nth-child(9){ animation-delay: 0.9s;}
-    .service-card:nth-child(10){ animation-delay: 1s;}
-    .service-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 25px #4a4f7f80;
+    .footer-top {
+      width: 100%;
+      max-width: 1300px;
+      display: flex;
+      gap: 2rem;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      border-bottom: 1px solid #292834;
+      padding-bottom: 1rem;
+      box-sizing: border-box;
     }
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0);}
+    .footer-col {
+      flex: 1 1 260px;
+      color: #bfc2cf;
+      font-size: 1em;
+      min-width: 200px;
+      box-sizing: border-box;
     }
-    .service-icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      color: #2563eb;
-      transition: color 0.3s;
-    }
-    .service-card:hover .service-icon { color: #fff;}
-    .service-title {
-      font-size: 1.4rem;
+    .footer-col strong {
+      color: #fff;
+      font-size: 1.1em;
       font-weight: 600;
-      margin-bottom: .8rem;
-      color: #b6befb;
-      text-align: center;
-      letter-spacing: .015em;
+      letter-spacing: 0.02em;
+      display: block;
+      margin-bottom: 0.4em;
     }
-    .service-desc {
-      font-size: 1.05rem;
-      color: #c0c2d4;
-      text-align: center;
-      line-height: 1.5;
+    .footer-col .detail {
+      color: #b9bacf;
+      line-height: 1.4;
+      margin-bottom: 1em;
+      font-size: 0.95em;
     }
-    @media (max-width: 900px) {
-      .services-animated {
-        flex-direction: column;
-        align-items: center;
-      }
-      .service-card {
-        width: 90%;
-        max-width: 340px;
-      }
+    .footer-bottom {
+      width: 100%;
+      max-width: 1300px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #848484;
+      font-size: 1rem;
+      padding-top: 0.5em;
+      font-family: inherit;
+      flex-wrap: wrap;
+      box-sizing: border-box;
+    }
+    .footer-links a {
+      color: #bbb;
+      text-decoration: none;
+      margin: 0 1em 0 0;
+      font-size: 0.97em;
+      transition: color 0.2s ease-in-out;
+    }
+    .footer-links a:hover {
+      color: #fff;
     }
     @media (max-width: 600px) {
-      .services-section,
+      .hero,
+      .hero-content,
       main {
         padding-left: 0 !important;
         padding-right: 0 !important;
       }
-      h1 {
-        font-size: 2rem;
-      }
-      .service-card {
-        padding: 1.2rem 0.7rem;
+      .service {
+        width: 95vw;
       }
     }
     @media (max-width: 420px) {
-      h1 {
-        font-size: 1.42rem;
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .footer-top {
+        gap: 1rem;
+      }
+      .footer-bottom {
+        font-size: 0.85rem;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <img class="header-logo" src="https://raw.githubusercontent.com/Shaggyyyz/nestcapitalfinance-landing/refs/heads/main/NFCLogo1.png" alt="Nest Capital Finance Logo" />
-    <div class="menu-toggle" id="menuToggle" aria-label="Toggle menu" tabindex="0" aria-expanded="false">
+    <img src="https://raw.githubusercontent.com/Shaggyyyz/nestcapitalfinance-landing/refs/heads/main/NFCLogo1.png" alt="Nest Capital Finance Logo" />
+    <div class="menu-toggle" id="menuToggle" aria-label="Toggle menu" role="button" tabindex="0" aria-expanded="false">
       <span></span>
       <span></span>
       <span></span>
     </div>
-    <nav id="menuPanel" class="menu-panel">
-      <a href="Services.html">Services</a>
-      <a href="about.html">About</a>
-      <a href="#partners">Partners</a>
-      <a href="resources.html">Resources</a>
-      <a href="contact.html">Contact</a>
+    <nav id="navMenu" aria-label="Primary navigation">
+      <a href="Services.html" tabindex="0">Services</a>
+      <a href="about.html#mission" tabindex="0">About</a>
+      <a href="#partners" tabindex="0">Partners</a>
+      <a href="resources.html" tabindex="0">Resources</a>
+      <a href="contact.html" tabindex="0">Contact</a>
     </nav>
   </header>
   <main>
-    <section class="services-section">
-      <h1>Our Services</h1>
-      <div class="services-animated">
-        <div class="service-card">
-          <div class="service-icon"><i class="ri-home-4-line"></i></div>
-          <div class="service-title">First Home Buyer</div>
-          <div class="service-desc">Having an entourage makes it easier to buy your first home and get the right loan for your needs.</div>
+    <div class="hero">
+      <div class="hero-slideshow" aria-hidden="true">
+        <div class="slide active" style="background-image:url('https://raw.githubusercontent.com/Shaggyyyz/nestcapitalfinance-landing/refs/heads/main/image1.jpeg');"></div>
+        <div class="slide" style="background-image:url('https://raw.githubusercontent.com/Shaggyyyz/nestcapitalfinance-landing/refs/heads/main/image2.jpeg');"></div>
+        <div class="slide" style="background-image:url('https://raw.githubusercontent.com/Shaggyyyz/nestcapitalfinance-landing/refs/heads/main/image3.jpeg');"></div>
+        <div class="slide" style="background-image:url('https://raw.githubusercontent.com/Shaggyyyz/nestcapitalfinance-landing/refs/heads/main/image4.jpeg');"></div>
+        <div class="slide" style="background-image:url('https://raw.githubusercontent.com/Shaggyyyz/nestcapitalfinance-landing/refs/heads/main/image5.jpeg');"></div>
+      </div>
+      <div class="hero-content">
+        <h1>Dream. Plan. Buy.</h1>
+        <p>Your trusted partner for home loans, property finance, and Commercial finance</p>
+        <button class="cta-button" id="getStartedBtn">Get Started</button>
+      </div>
+    </div>
+    <section id="services">
+      <h2>Our Services</h2>
+      <div class="services">
+        <div class="service">
+          <h3>Home Loans</h3>
+          <p>Access competitive residential and commercial home loan solutions from 60+ lenders, tailored to your needs.</p>
         </div>
-        <div class="service-card">
-          <div class="service-icon"><i class="ri-coins-line"></i></div>
-          <div class="service-title">Investor</div>
-          <div class="service-desc">Having an entourage means making the right decisions when buying your investment property.</div>
+        <div class="service">
+          <h3>Property Advisory</h3>
+          <p>Guidance for buying, selling, or investing—local expertise and trusted advocacy to help you succeed.</p>
         </div>
-        <div class="service-card">
-          <div class="service-icon"><i class="ri-refund-2-line"></i></div>
-          <div class="service-title">Refinancing</div>
-          <div class="service-desc">Refinancing is easy when you have an entourage to negotiate on your behalf with the lenders.</div>
-        </div>
-        <div class="service-card">
-          <div class="service-icon"><i class="ri-building-2-line"></i></div>
-          <div class="service-title">Commercial Finance</div>
-          <div class="service-desc">Making business decisions is simple when you’re getting the right advice from your entourage.</div>
-        </div>
-        <div class="service-card">
-          <div class="service-icon"><i class="ri-map-pin-2-line"></i></div>
-          <div class="service-title">Construction Finance</div>
-          <div class="service-desc">Making business decisions is simple when you’re getting the right advice from your entourage.</div>
-        </div>
-        <div class="service-card">
-          <div class="service-icon"><i class="ri-team-line"></i></div>
-          <div class="service-title">SMSF Finance</div>
-          <div class="service-desc">Entourage will help you to get the best deal on your SMSF loan.</div>
-        </div>
-        <div class="service-card">
-          <div class="service-icon"><i class="ri-map-pin-2-line"></i></div>
-          <div class="service-title">Development Site</div>
-          <div class="service-desc">Making business decisions is simple when you’re getting the right advice from your entourage.</div>
-        </div>
-        <div class="service-card">
-          <div class="service-icon"><i class="ri-home-4-line"></i></div>
-          <div class="service-title">Doctor Home Loans</div>
-          <div class="service-desc">Having an entourage makes it easier for doctors to buy residential and commercial property.</div>
-        </div>
-        <div class="service-card">
-          <div class="service-icon"><i class="ri-home-4-line"></i></div>
-          <div class="service-title">Lawyer Home Loans</div>
-          <div class="service-desc">Having an entourage makes it easier for lawyers to buy residential and commercial property.</div>
-        </div>
-        <div class="service-card">
-          <div class="service-icon"><i class="ri-building-3-line"></i></div>
-          <div class="service-title">Professional Athlete Home Loans</div>
-          <div class="service-desc">Having an entourage makes it easier for athletes to buy residential and commercial property.</div>
+        <div class="service">
+          <h3>Asset Finance</h3>
+          <p>Finance for vehicles, business equipment, and assets—streamlined for fast approvals and fair rates.</p>
         </div>
       </div>
     </section>
+    <section id="about">
+      <h2>About Nest Capital Finance</h2>
+      <p>At Nest Capital Finance, our mission is to simplify the journey to your dream property. Our award-nominated team combines industry experience, personal service, and insider access to leading lenders—earning 5-star client reviews every step of the way. Based in Australia, we support clients locally and overseas with tailored mortgage and property solutions.</p>
+      <div class="testimonials">
+        <strong>Testimonials</strong>
+        <div class="testimonial">"Nest Capital Finance made my home buying journey stress-free—professional, fast, and found a great rate for me." — Chris, Melbourne</div>
+        <div class="testimonial">"Expert advice, clear communication, and genuine care. Couldn’t recommend them more highly." — Priya, Sydney</div>
+      </div>
+    </section>
   </main>
+  <footer class="footer-main">
+    <div class="footer-top">
+      <div class="footer-col">
+        <strong>Nest Capital Finance Pty Ltd</strong>
+        <div class="detail">
+          ABN: 12 345 678 901<br />
+          Australian Credit Licence: 123456<br />
+        </div>
+      </div>
+      <div class="footer-col">
+        <strong>Nest Property Advisory</strong>
+        <div class="detail">
+          ABN: 23 456 789 012<br />
+          Real Estate Licence: 987654L<br />
+        </div>
+      </div>
+      <div class="footer-col">
+        <strong>Nest Asset Pty Ltd</strong>
+        <div class="detail">
+          ACN 234567890<br />
+          Australian Credit Licence: 112233<br />
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2025 Nest Capital | Privacy Policy | Culture</div>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Culture</a>
+      </div>
+    </div>
+  </footer>
   <script>
-    // Hamburger menu toggle animation
+    // Hamburger menu toggle for nav
     const menuToggle = document.getElementById('menuToggle');
-    const menuPanel = document.getElementById('menuPanel');
-
-    menuToggle.addEventListener('click', function() {
+    const navMenu = document.getElementById('navMenu');
+    menuToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('open');
       menuToggle.classList.toggle('open');
-      menuPanel.classList.toggle('open');
-      menuToggle.setAttribute('aria-expanded', menuPanel.classList.contains('open'));
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
     });
 
-    // Accessibility: allow Enter key to open menu
-    menuToggle.addEventListener('keydown', function(e) {
-      if(e.key === "Enter" || e.key === " ") {
-        menuToggle.click();
-      }
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', function(e) {
-      if (!menuPanel.contains(e.target) && !menuToggle.contains(e.target)) {
-        menuPanel.classList.remove('open');
+    // Close menu when clicking outside (mobile UX)
+    document.addEventListener('click', (event) => {
+      if (!navMenu.contains(event.target) && !menuToggle.contains(event.target)) {
+        navMenu.classList.remove('open');
         menuToggle.classList.remove('open');
         menuToggle.setAttribute('aria-expanded', "false");
       }
     });
 
-    // Header scroll shadow
-    window.addEventListener('scroll', function() {
+    // Scroll effect for header
+    window.addEventListener('scroll', () => {
       if (window.scrollY > 10) {
         document.querySelector('header').classList.add('scrolled');
       } else {
         document.querySelector('header').classList.remove('scrolled');
       }
     });
+
+    // Hero slideshow functionality
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.hero-slideshow .slide');
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    setInterval(nextSlide, 6000);
+
+    // CTA button redirect
+    document.getElementById('getStartedBtn').onclick = function() {
+      window.location.href = 'contact.html';
+    };
   </script>
 </body>
 </html>
-
