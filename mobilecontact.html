@@ -1,1 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Us - Nest Capital Finance</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:600,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <style>
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: #181820;
+      color: #e8e6ff;
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 1rem;
+      background: transparent;
+      z-index: 1000;
+      box-sizing: border-box;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    header.scrolled {
+      background-color: #181820;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.75);
+    }
+    header img {
+      height: 60px;
+      filter: brightness(0) invert(1);
+      z-index: 1101;
+    }
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      width: 30px;
+      height: 22px;
+      cursor: pointer;
+      justify-content: space-between;
+      z-index: 1102;
+    }
+    .menu-toggle span {
+      display: block;
+      height: 4px;
+      background-color: white;
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .menu-toggle.open span:nth-child(1) {
+      transform: translateY(9px) rotate(45deg);
+    }
+    .menu-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-toggle.open span:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg);
+    }
+    .menu-panel {
+      position: fixed;
+      top: 70px; right: 0;
+      width: 220px;
+      height: calc(100% - 70px);
+      background: #181820;
+      flex-direction: column;
+      display: flex;
+      padding: 1.2rem 1rem;
+      gap: 1rem;
+      box-shadow: -4px 0 18px rgba(0,0,0,0.7);
+      transform: translateX(100%);
+      transition: transform 0.33s cubic-bezier(.68,-0.55,.27,1.55);
+      overflow-y: auto;
+      box-sizing: border-box;
+      z-index: 1500;
+      opacity: 1;
+      pointer-events: none;
+    }
+    .menu-panel.open {
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+    .menu-panel a {
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.12rem;
+      text-decoration: none;
+      cursor: pointer;
+      user-select: none;
+      border-radius: 6px;
+      padding: 0.7rem 0.8rem;
+      transition: color 0.13s, background 0.13s;
+      letter-spacing: .04em;
+      display: block;
+      width: 100%;
+    }
+    .menu-panel a:hover {
+      color: #2563eb;
+      background: #22232c;
+    }
+    main {
+      padding-top: 90px;
+      max-width: 1100px;
+      margin: 3.5rem auto 0 auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 3.5rem;
+      flex-wrap: wrap;
+    }
+    .contact-details {
+      flex: 1 1 320px;
+      background: transparent;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .contact-details h2 {
+      font-size: 2.2rem;
+      margin-bottom: 0.4rem;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+    .contact-details h4 {
+      font-size: 1.17rem;
+      margin: .2rem 0 1.5rem 0;
+      font-weight: 400;
+      color: #b6befb;
+    }
+    .contact-details .descriptor {
+      margin-bottom: 2rem;
+      font-size: 1.07rem;
+      color: #c2c7e7;
+      max-width: 350px;
+      line-height: 1.7;
+    }
+    .info-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.8rem 0;
+    }
+    .info-list li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.1rem;
+      gap: 1.05rem;
+      font-size: 1.13rem;
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: -.01em;
+    }
+    .info-list li .icon {
+      background: #22232c;
+      color: #8ca5f5;
+      width: 36px; height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 1.3rem;
+      margin-right: 0.4em;
+    }
+    .contact-social {
+      display: flex;
+      gap: 1rem;
+      margin: 1.7rem 0 0 0;
+    }
+    .contact-social a {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      background: #232330;
+      color: #b6befb;
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      font-size: 1.25rem;
+      transition: background .15s, color .15s;
+      text-decoration: none;
+    }
+    .contact-social a:hover {
+      background: #2563eb; color: #fff;
+    }
+    .contact-section {
+      flex: 1 1 420px;
+      background: #22232c;
+      border-radius: 16px;
+      box-shadow: 0 1px 16px #0405121a;
+      padding: 2.5rem 3.2rem 2rem 3.2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 320px;
+      max-width: 460px;
+    }
+    .contact-section h1 {
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: #b6befb;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    form { width: 100%; }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 1.1rem 1.4rem;
+      align-items: center;
+      margin-bottom: 1.3rem;
+    }
+    label {
+      font-weight: 600;
+      letter-spacing: .07em;
+      color: #fff;
+      justify-self: end;
+      align-self: center;
+      white-space: nowrap;
+      text-align: right;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      border-radius: 7px;
+      border: 1px solid #34344e;
+      background: #232330;
+      color: #fff;
+      font-size: 1rem;
+      font-family: inherit;
+      font-weight: 300;
+      resize: none;
+      outline: none;
+      transition: border 0.2s;
+    }
+    input:focus, textarea:focus {
+      border: 1.5px solid #2563eb;
+    }
+    input::placeholder,
+    textarea::placeholder {
+      color: #8c92ac;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 300;
+      opacity: 1;
+      letter-spacing: 0;
+    }
+    .cta-button {
+      width: 100%;
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      padding: 1.15rem 0;
+      font-size: 1.15rem;
+      font-weight: 700;
+      border-radius: 7px;
+      margin-top: .7rem;
+      box-shadow: 0 4px 20px #232f3e19;
+      letter-spacing: .04em;
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s, transform 0.09s;
+    }
+    .cta-button:active {
+      transform: scale(0.965);
+      background: #1d47b8;
+      box-shadow: 0 2px 10px #232f3e40;
+    }
+    .cta-button:hover {
+      background: #1a2a90;
+    }
+    @media (max-width: 1050px) {
+      main {
+        flex-direction: column;
+        padding-top: 130px;
+      }
+      .contact-section, .contact-details { max-width: 97vw; }
+    }
+    @media (max-width: 700px) {
+      header { padding: 1.2rem .7rem;}
+      main {
+        gap: 1.8rem;
+      }
+      .contact-section {
+        padding: 1.2rem .7rem;
+        min-width: unset; max-width: 99vw;
+      }
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 0.48rem 0;
+      }
+      label {
+        justify-self: start;
+        text-align: left;
+        margin-top: 0.7rem;
+      }
+      .menu-toggle {
+        display: flex;
+      }
+      .menu-panel {
+        width: 90vw;
+        top: 70px;
+        height: calc(100% - 70px);
+        transform: translateX(100%);
+        transition: transform 0.33s cubic-bezier(.68,-0.55,.27,1.55);
+        pointer-events: none;
+        opacity: 1;
+      }
+      .menu-panel.open {
+        transform: translateX(0);
+        pointer-events: auto;
+      }
+      nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://raw.githubusercontent.com/Shaggyyyz/nestcapitalfinance-landing/refs/heads/main/NFCLogo1.png" alt="Nest Capital Finance Logo" />
+    <div class="menu-toggle" id="menuToggle" aria-label="Toggle menu" tabindex="0" aria-expanded="false" role="button">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav id="menuPanel" class="menu-panel" aria-label="Primary navigation">
+      <a href="Services.html" tabindex="0">Services</a>
+      <a href="about.html#mission" tabindex="0">About</a>
+      <a href="#partners" tabindex="0">Partners</a>
+      <a href="resources.html" tabindex="0">Resources</a>
+      <a href="contact.html" tabindex="0">Contact</a>
+    </nav>
+  </header>
+  <main>
+    <aside class="contact-details">
+      <h2>Let's Chat</h2>
+      <h4>Arrange a free chat with us today</h4>
+      <div class="descriptor">
+        Are you ready to enjoy the Nest Capital experience? Let us help you get finance, property advice, or just grow your wealth. Call or email now!
+      </div>
+      <ul class="info-list">
+        <li>
+          <span class="icon"><i class="fa-solid fa-phone"></i></span>
+          1300 385 222
+        </li>
+        <li>
+          <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+          <a href="mailto:info@nestcapital.com.au" style="color: inherit; text-decoration: underline;">info@nestcapital.com.au</a>
+        </li>
+        <li>
+          <span class="icon"><i class="fa-solid fa-location-dot"></i></span>
+          Level 5, 9-11 Cremorne St, Cremorne VIC 3121
+        </li>
+      </ul>
+      <div class="contact-social">
+        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+      </div>
+    </aside>
+    <section class="contact-section">
+      <h1>Contact Us</h1>
+      <form>
+        <div class="form-grid">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="fullName" placeholder="Your full name" required>
+          <label for="mobile">Mobile Number</label>
+          <input type="tel" id="mobile" name="mobile" placeholder="Your mobile number" required pattern="[0-9 ]{8,15}">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Your email address" required>
+          <label for="reason">Reason to contact</label>
+          <textarea id="reason" name="reason" rows="3" placeholder="Type your reason here" required></textarea>
+        </div>
+        <button type="submit" class="cta-button">Send Message</button>
+      </form>
+    </section>
+  </main>
+  <script>
+    // Hamburger menu toggle animation, outside click + accessibility
+    const menuToggle = document.getElementById('menuToggle');
+    const menuPanel = document.getElementById('menuPanel');
+
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('open');
+      menuPanel.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', menuPanel.classList.contains('open'));
+    });
+
+    menuToggle.addEventListener('keydown', function(e) {
+      if(e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        menuToggle.click();
+      }
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!menuPanel.contains(e.target) && !menuToggle.contains(e.target)) {
+        menuPanel.classList.remove('open');
+        menuToggle.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', "false");
+      }
+    });
+
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 10) {
+        document.querySelector('header').classList.add('scrolled');
+      } else {
+        document.querySelector('header').classList.remove('scrolled');
+      }
+    });
+  </script>
+</body>
+</html>
 
