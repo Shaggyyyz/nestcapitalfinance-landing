@@ -122,16 +122,20 @@
         display: flex;
       }
     }
-    main {
-      padding-top: 90px;
-      max-width: 900px;
-      margin: 2rem auto;
-      background: #22232c;
-      border-radius: 14px;
-      box-shadow: 0 1px 8px #0405123a;
-      padding: 2rem 1.5rem;
-      color: #e8e6ff;
-    }
+  main {
+  padding-top: 130px; /* height of fixed header plus some buffer */
+  margin-left: 4rem;  /* same as logo margin-left to avoid content under logo */
+  max-width: 900px;
+  margin-right: auto;
+  margin-bottom: 2rem;
+  background: #22232c;
+  border-radius: 14px;
+  box-shadow: 0 1px 8px #0405123a;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  box-sizing: border-box;
+}
+
     h2 {
       text-align: center;
       color: #b6befb;
