@@ -34,6 +34,7 @@
     header img {
       height: 60px;
       filter: brightness(0) invert(1);
+      z-index: 1101;
     }
     .menu-toggle {
       display: none;
@@ -42,14 +43,14 @@
       height: 22px;
       cursor: pointer;
       justify-content: space-between;
-      z-index: 1100;
+      z-index: 1102;
     }
     .menu-toggle span {
       display: block;
       height: 4px;
       background-color: white;
       border-radius: 2px;
-      transition: transform 0.3s ease, opacity 0.3s ease;
+      transition: transform 0.3s, opacity 0.3s;
     }
     .menu-toggle.open span:nth-child(1) {
       transform: translateY(9px) rotate(45deg);
@@ -60,36 +61,65 @@
     .menu-toggle.open span:nth-child(3) {
       transform: translateY(-9px) rotate(-45deg);
     }
-    nav {
+
+    /* New style for menu-panel, matching second code */
+    .menu-panel {
       position: fixed;
-      top: 70px;
-      right: 0;
+      top: 70px; right: 0;
       width: 220px;
       height: calc(100% - 70px);
       background: #181820;
       flex-direction: column;
       display: flex;
-      padding: 1rem;
+      padding: 1.2rem 1rem;
       gap: 1rem;
-      box-shadow: -4px 0 16px rgba(0,0,0,0.7);
+      box-shadow: -4px 0 18px rgba(0,0,0,0.7);
       transform: translateX(100%);
-      transition: transform 0.3s ease-in-out;
+      transition: transform 0.33s cubic-bezier(.68,-0.55,.27,1.55);
       overflow-y: auto;
       box-sizing: border-box;
+      z-index: 1500;
+      opacity: 1;
+      pointer-events: none;
     }
-    nav.open {
+    .menu-panel.open {
       transform: translateX(0);
+      pointer-events: auto;
     }
-    nav a {
+    .menu-panel a {
       color: #fff;
       font-weight: 600;
-      font-size: 1.1rem;
+      font-size: 1.12rem;
       text-decoration: none;
       cursor: pointer;
       user-select: none;
+      border-radius: 6px;
+      padding: 0.7rem 0.8rem;
+      transition: color 0.13s, background 0.13s;
+      letter-spacing: .04em;
+      display: block;
+      width: 100%;
     }
-    nav a:hover {
+    .menu-panel a:hover {
       color: #2563eb;
+      background: #22232c;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+      }
+      .menu-panel {
+        width: 90vw;
+      }
+      main {padding-left: 0 !important; padding-right: 0 !important;}
+      .service {width: 95vw;}
+    }
+    @media (max-width: 420px) {
+      header img {height: 50px;}
+      .hero h1 {font-size: 2rem;}
+      .footer-top {gap: 1rem;}
+      .footer-bottom {font-size: 0.85rem;}
     }
     main {
       padding-top: 90px;
@@ -109,7 +139,6 @@
       color: #fff;
       padding-left: 1rem;
       padding-right: 1rem;
-      /* Remove background here, let the slideshow handle it */
     }
 
     .hero-slideshow {
@@ -130,8 +159,8 @@
       background-repeat: no-repeat;
       opacity: 0;
       transition: opacity 1.5s ease-in-out;
-      border: none;   /* Ensure no border */
-      box-shadow: none; /* Ensure no shadow */
+      border: none;
+      box-shadow: none;
     }
 
     .slide.active {
@@ -143,20 +172,18 @@
       content: '';
       position: absolute;
       inset: 0;
-      background-color: rgba(0,0,0,0.35); /* Optional: for subtle dark overlay */
+      background-color: rgba(0,0,0,0.35);
       pointer-events: none;
       z-index: 2;
     }
-.hero::after {
-  content: '';
-  position: absolute;
-  left: 0; right: 0; bottom: 0; height: 140px;
-  pointer-events: none;
-  z-index: 2;
-  /* Match background color and fade out below images */
-  background: linear-gradient(to bottom, rgba(24,24,32,0) 0%, #181820 100%);
-}
-
+    .hero::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: 0; height: 140px;
+      pointer-events: none;
+      z-index: 2;
+      background: linear-gradient(to bottom, rgba(24,24,32,0) 0%, #181820 100%);
+    }
     .hero-content {
       position: relative;
       z-index: 3;
@@ -312,71 +339,23 @@
     .footer-links a:hover {
       color: #fff;
     }
-    @media (max-width: 768px) {
-      nav {
-        position: fixed;
-        top: 70px;
-        right: 0;
-        height: calc(100% - 70px);
-        width: 250px;
-        background-color: #181820;
-        flex-direction: column;
-        padding: 1rem;
-        gap: 1rem;
-        box-shadow: -4px 0 16px rgba(0,0,0,0.7);
-        transform: translateX(100%);
-        transition: transform 0.3s ease-in-out;
-        overflow-y: auto;
-      }
-      nav.open {
-        transform: translateX(0);
-      }
-      .menu-toggle {
-        display: flex;
-      }
-    }
-    @media (max-width: 600px) {
-      .hero,
-      .hero-content,
-      main {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-      }
-    }
-    @media (max-width: 420px) {
-      header img {
-        height: 50px;
-      }
-      .hero h1 {
-        font-size: 2rem;
-      }
-      .service {
-        width: 95vw;
-      }
-      .footer-top {
-        gap: 1rem;
-      }
-      .footer-bottom {
-        font-size: 0.85rem;
-      }
-    }
   </style>
 </head>
 <body>
   <header>
     <img src="https://raw.githubusercontent.com/Shaggyyyz/nestcapitalfinance-landing/refs/heads/main/NFCLogo1.png" alt="Nest Capital Finance Logo" />
-    <div class="menu-toggle" id="menuToggle" aria-label="Toggle menu" role="button" tabindex="0" aria-expanded="false">
+    <div class="menu-toggle" id="menuToggle" aria-label="Toggle menu" tabindex="0" aria-expanded="false">
       <span></span>
       <span></span>
       <span></span>
     </div>
-    <nav id="navMenu" aria-label="Primary navigation">
+    <div id="menuPanel" class="menu-panel" aria-label="Primary navigation">
       <a href="Services.html" tabindex="0">Services</a>
       <a href="about.html#mission" tabindex="0">About</a>
       <a href="#partners" tabindex="0">Partners</a>
       <a href="resources.html" tabindex="0">Resources</a>
       <a href="contact.html" tabindex="0">Contact</a>
-    </nav>
+    </div>
   </header>
   <main>
     <div class="hero">
@@ -453,18 +432,34 @@
     </div>
   </footer>
   <script>
+    // Hamburger menu toggle animation, outside click + accessibility
     const menuToggle = document.getElementById('menuToggle');
-    const navMenu = document.getElementById('navMenu');
+    const menuPanel = document.getElementById('menuPanel');
 
-    menuToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('open');
+    menuToggle.addEventListener('click', function() {
       menuToggle.classList.toggle('open');
-      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
-      menuToggle.setAttribute('aria-expanded', !expanded);
+      menuPanel.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', menuPanel.classList.contains('open'));
     });
 
-    // Scroll effect for header
-    window.addEventListener('scroll', () => {
+    // Accessibility: allow Enter key to open menu
+    menuToggle.addEventListener('keydown', function(e) {
+      if(e.key === "Enter" || e.key === " ") {
+        menuToggle.click();
+      }
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!menuPanel.contains(e.target) && !menuToggle.contains(e.target)) {
+        menuPanel.classList.remove('open');
+        menuToggle.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', "false");
+      }
+    });
+
+    // Scroll effect for header shadow
+    window.addEventListener('scroll', function() {
       if (window.scrollY > 10) {
         document.querySelector('header').classList.add('scrolled');
       } else {
