@@ -419,6 +419,7 @@
       font-family: inherit;
       font-weight: 400;
     }
+    /* Mobile fixes: show content immediately to avoid invisible due to animation */
     @media (max-width: 768px) {
       .menu-toggle {
         display: flex;
@@ -439,22 +440,26 @@
       }
       .resource-card {
         width: 90%;
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        animation: none !important;
+      }
+      .lender-item {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        animation: none !important;
       }
       .blog-card {
         flex: 1 1 100%;
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        animation: none !important;
       }
-      @media (max-width: 768px) {
-  /* Show content immediately on mobile by overriding animation styles */
-  .resource-card,
-  .lender-item,
-  .blog-card,
-  .faq-item {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-    animation: none !important;
-  }
-}
-
+      .faq-item {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        animation: none !important;
+      }
     }
     footer {
       background: #181a20;
@@ -681,6 +686,7 @@
         </div>
       </div>
     </section>
+
   </main>
   <footer>
     &copy; 2025 Nest Capital Finance | All Rights Reserved
