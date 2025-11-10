@@ -136,6 +136,7 @@
       margin: .2rem 0 1.5rem 0;
       font-weight: 400;
       color: #b6befb;
+      letter-spacing: 0;
     }
     .contact-details .descriptor {
       margin-bottom: 2rem;
@@ -373,7 +374,7 @@
     </aside>
     <section class="contact-section">
       <h1>Contact Us</h1>
-      <form>
+      <form id="contactForm">
         <div class="form-grid">
           <label for="fullName">Full Name</label>
           <input type="text" id="fullName" name="fullName" placeholder="Your full name" required>
@@ -388,40 +389,63 @@
       </form>
     </section>
   </main>
-<script>
-  const menuToggle = document.getElementById('menuToggle');
-  const menuPanel = document.getElementById('menuPanel');
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const menuPanel = document.getElementById('menuPanel');
 
-  menuToggle.addEventListener('click', () => {
-    menuToggle.classList.toggle('open');
-    menuPanel.classList.toggle('open');
-    menuToggle.setAttribute('aria-expanded', menuPanel.classList.contains('open'));
-  });
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('open');
+      menuPanel.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', menuPanel.classList.contains('open'));
+    });
 
-  menuToggle.addEventListener('keydown', (e) => {
-    if(e.key === "Enter" || e.key === " ") {
+    menuToggle.addEventListener('keydown', (e) => {
+      if(e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        menuToggle.click();
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!menuPanel.contains(e.target) && !menuToggle.contains(e.target)) {
+        menuPanel.classList.remove('open');
+        menuToggle.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', "false");
+      }
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        document.querySelector('header').classList.add('scrolled');
+      } else {
+        document.querySelector('header').classList.remove('scrolled');
+      }
+    });
+
+    // Form submission to Google Apps Script
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', function(e) {
       e.preventDefault();
-      menuToggle.click();
-    }
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!menuPanel.contains(e.target) && !menuToggle.contains(e.target)) {
-      menuPanel.classList.remove('open');
-      menuToggle.classList.remove('open');
-      menuToggle.setAttribute('aria-expanded', "false");
-    }
-  });
-
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 10) {
-      document.querySelector('header').classList.add('scrolled');
-    } else {
-      document.querySelector('header').classList.remove('scrolled');
-    }
-  });
-</script>
+      const data = {
+        fullName: form.fullName.value,
+        mobile: form.mobile.value,
+        email: form.email.value,
+        reason: form.reason.value
+      };
+      fetch('https://script.google.com/macros/s/AKfycbwcwG7XNQ8d-39k4xtIWd3w3HlVOI5IJ-DVQlCd12yYkF9iFHdGKxPHVKUKrx2f1deUcA/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data)
+      }).then(() => {
+        alert("Thank you for contacting us!");
+        form.reset();
+      }).catch((error) => {
+        alert("There was an error submitting the form.");
+        console.error(error);
+      });
+    });
+  </script>
 </body>
 </html>
-
 
