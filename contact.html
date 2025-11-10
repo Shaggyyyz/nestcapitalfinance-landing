@@ -298,18 +298,14 @@
       label { justify-self: start; text-align: left; margin-top: 0.7rem; }
     }
   </style>
-   <script>
-  // Define your mobile site URL (change to your actual mobile site URL)
-  const mobileSiteUrl = "https://shaggyyyz.github.io/nestcapitalfinance-landing/mobilecontact.html";
-
-  // Check if already on mobile redirect site to prevent loops
-  const isOnMobileSite = window.location.href.includes("https://shaggyyyz.github.io/nestcapitalfinance-landing/mobilecontact.html");
-
-  // Detect mobile viewport width & redirect accordingly
-  if (window.matchMedia("(max-width: 768px)").matches && !isOnMobileSite) {
-    window.location.href = mobileSiteUrl;
-  }
-</script>
+  <script>
+      // Detect mobile viewport width & redirect accordingly
+      const mobileSiteUrl = "https://shaggyyyz.github.io/nestcapitalfinance-landing/mobilecontact.html";
+      const isOnMobileSite = window.location.href.includes(mobileSiteUrl);
+      if (window.matchMedia("(max-width: 768px)").matches && !isOnMobileSite) {
+          window.location.href = mobileSiteUrl;
+      }
+  </script>
 </head>
 <body>
   <header>
@@ -378,7 +374,7 @@
       </aside>
       <section class="contact-section">
         <h1>Contact Us</h1>
-        <form>
+        <form id="contactForm">
           <div class="form-grid">
             <label for="fullName">Full Name</label>
             <input type="text" id="fullName" name="fullName" placeholder="Your full name" required>
@@ -392,29 +388,29 @@
           <button type="submit" class="cta-button">Send Message</button>
         </form>
         <script>
-  const form = document.getElementById('contactForm');
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const data = {
-      fullName: form.fullName.value,
-      mobile: form.mobile.value,
-      email: form.email.value,
-      reason: form.reason.value
-    };
-    fetch('https://script.google.com/macros/s/AKfycbwcwG7XNQ8d-39k4xtIWd3w3HlVOI5IJ-DVQlCd12yYkF9iFHdGKxPHVKUKrx2f1deUcA/exec', {
-      method: 'POST',
-      mode: 'no-cors', // prevents CORS errors but no response accessible, optional
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(data)
-    }).then(() => {
-      alert("Thank you for contacting us!");
-      form.reset();
-    }).catch((error) => {
-      alert("There was an error submitting the form.");
-      console.error(error);
-    });
-  });
-</script>
+          const form = document.getElementById('contactForm');
+          form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const data = {
+              fullName: form.fullName.value,
+              mobile: form.mobile.value,
+              email: form.email.value,
+              reason: form.reason.value
+            };
+            fetch('https://script.google.com/macros/s/AKfycbwcwG7XNQ8d-39k4xtIWd3w3HlVOI5IJ-DVQlCd12yYkF9iFHdGKxPHVKUKrx2f1deUcA/exec', {
+              method: 'POST',
+              mode: 'no-cors',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: new URLSearchParams(data)
+            }).then(() => {
+              alert("Thank you for contacting us!");
+              form.reset();
+            }).catch((error) => {
+              alert("There was an error submitting the form.");
+              console.error(error);
+            });
+          });
+        </script>
       </section>
     </div>
   </main>
@@ -458,5 +454,4 @@
   </script>
 </body>
 </html>
-
 
