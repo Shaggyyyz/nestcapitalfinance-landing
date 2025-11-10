@@ -298,6 +298,18 @@
       label { justify-self: start; text-align: left; margin-top: 0.7rem; }
     }
   </style>
+   <script>
+  // Define your mobile site URL (change to your actual mobile site URL)
+  const mobileSiteUrl = "https://shaggyyyz.github.io/nestcapitalfinance-landing/mobilecontact.html";
+
+  // Check if already on mobile redirect site to prevent loops
+  const isOnMobileSite = window.location.href.includes("https://shaggyyyz.github.io/nestcapitalfinance-landing/mobilecontact.html");
+
+  // Detect mobile viewport width & redirect accordingly
+  if (window.matchMedia("(max-width: 768px)").matches && !isOnMobileSite) {
+    window.location.href = mobileSiteUrl;
+  }
+</script>
 </head>
 <body>
   <header>
