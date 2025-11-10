@@ -443,6 +443,18 @@
       .blog-card {
         flex: 1 1 100%;
       }
+      @media (max-width: 768px) {
+  /* Show content immediately on mobile by overriding animation styles */
+  .resource-card,
+  .lender-item,
+  .blog-card,
+  .faq-item {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    animation: none !important;
+  }
+}
+
     }
     footer {
       background: #181a20;
