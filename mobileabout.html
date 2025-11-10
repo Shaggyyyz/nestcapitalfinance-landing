@@ -13,6 +13,7 @@
       margin: 0;
       background: #181820;
       color: #fff;
+      overflow-x: hidden;
     }
     header {
       position: fixed;
@@ -33,9 +34,9 @@
     }
     header img {
       height: 60px;
-      margin-left: 4rem;
       filter: brightness(0) invert(1);
       z-index: 1101;
+      margin-left: 0; /* aligned like Services page */
     }
     .menu-toggle {
       display: none;
@@ -45,7 +46,6 @@
       cursor: pointer;
       justify-content: space-between;
       z-index: 1102;
-      margin-left: auto;
     }
     .menu-toggle span {
       display: block;
@@ -106,15 +106,14 @@
       background: #22232c;
     }
     nav {
+      flex: 1;
       display: flex;
       gap: 2.8rem;
       margin-top: 2.6rem;
       align-items: flex-start;
       padding-right: 3rem;
-      flex: 1;
       justify-content: flex-end;
     }
-    /* Hide desktop nav on small screens */
     @media (max-width: 768px) {
       nav {
         display: none;
@@ -137,7 +136,7 @@
       text-align: center;
       color: #b6befb;
     }
-    /* VALUES SECTION */}
+    /* VALUES SECTION */
     .values-hero {
       max-width: 1000px;
       background: #22232c;
@@ -330,7 +329,7 @@
       </ul>
     </section>
     
-    <!-- VALUES SECTION -->
+    <!-- VALUES -->
     <section class="values-hero">
       <h2>Our Values</h2>
       <p class="subtitle">We believe in empowering our clients through unwavering commitment to excellence, integrity, and service. These core values guide everything we do.</p>
@@ -433,3 +432,4 @@
 </script>
 </body>
 </html>
+
