@@ -49,6 +49,9 @@
     .total-amount{font-size:1.2rem;font-weight:600;color:#c0c2d4;margin-top:1.7rem;margin-bottom:2rem}
     .total-amount span{display:block;font-size:1.8rem;font-weight:700;color:#2563eb;margin-top:.5rem}
     .divider{border-top:1.6px solid #34344e;margin:1.1rem 0}
+    .chart-toggle{display:flex;gap:.5rem;margin-bottom:1rem;justify-content:center}
+    .chart-toggle-btn{padding:.5rem 1rem;border:2px solid #34344e;background:#232330;color:#fff;font-weight:600;border-radius:6px;cursor:pointer;transition:background .16s,color .16s,border .16s;font-size:.95rem}
+    .chart-toggle-btn.active{background:#2563eb;color:#fff;border-color:#2563eb}
     .chart-container{margin-top:1.5rem;padding:1.2rem;background:#232330;border-radius:10px;position:relative;height:280px}
     canvas{max-height:280px}
   </style>
@@ -154,6 +157,10 @@
           <span class="result-value" id="interestChargedDisplay">$570,759</span>
         </div>
         <div class="total-amount">Your estimated total amount<span id="totalAmountDisplay">$1,095,759</span></div>
+        <div class="chart-toggle">
+          <button class="chart-toggle-btn active" id="barChartBtn">Bar Chart</button>
+          <button class="chart-toggle-btn" id="pieChartBtn">Pie Chart</button>
+        </div>
         <div class="chart-container">
           <canvas id="repaymentChart"></canvas>
         </div>
@@ -202,67 +209,106 @@
     }
     
     function updateChart(loan,pr,n,pmt,type,term){
-      const maxYears=Math.min(term,30);
-      const labels=[];
-      const principalData=[];
-      const interestData=[];
-      let balance=loan;
-      const paymentsPerYear=Math.round(n/term);
-      
-      for(let year=0;year<=maxYears;year++){
-        labels.push('Year '+year);
-        let yearlyPrincipal=0;
-        let yearlyInterest=0;
-        
-        for(let i=0;i<paymentsPerYear&&balance>0;i++){
-          const interestPayment=balance*pr;
-          const principalPayment=(type==='interestOnly')?0:pmt-interestPayment;
-          yearlyInterest+=interestPayment;
-          yearlyPrincipal+=principalPayment;
-          balance-=principalPayment;
-        }
-        principalData.push(Math.round(yearlyPrincipal));
-        interestData.push(Math.round(yearlyInterest));
-      }
-      
-      const ctx=document.getElementById('repaymentChart').getContext('2d');
-      
-      if(myChart){myChart.destroy()}
-      
-      myChart=new Chart(ctx,{
-        type:'bar',
-        data:{
-          labels:labels,
-          datasets:[
-            {label:'Principal',data:principalData,backgroundColor:'#2563eb',borderColor:'#2563eb',borderWidth:1},
-            {label:'Interest',data:interestData,backgroundColor:'#8ca5f5',borderColor:'#8ca5f5',borderWidth:1}
-          ]
-        },
-        options:{
-          responsive:true,
-          maintainAspectRatio:false,
-          animation:{duration:800,easing:'easeInOutQuart'},
-          scales:{
-            x:{stacked:true,ticks:{color:'#c0c2d4',font:{size:10}},grid:{color:'#34344e'}},
-            y:{stacked:true,ticks:{color:'#c0c2d4',callback:function(value){return '$'+(value/1000).toFixed(0)+'k'}},grid:{color:'#34344e'}}
-          },
-          plugins:{
-            legend:{display:true,position:'top',labels:{color:'#c0c2d4',font:{size:11},padding:10}},
-            tooltip:{
-              callbacks:{
-                label:function(context){return context.dataset.label+': '+formatMoney(context.parsed.y)}
+  const chartType=document.querySelector('.chart-toggle-btn.active').id==='pieChartBtn'?'pie':'bar';
+  const maxYears=Math.min(term,30);
+  const labels=[];
+  const principalData=[];
+  const interestData=[];
+  let balance=loan;
+  const paymentsPerYear=Math.round(n/term);
+  
+  for(let year=0;year<=maxYears;year++){
+    labels.push('Year '+year);
+    let yearlyPrincipal=0;
+    let yearlyInterest=0;
+    
+    for(let i=0;i<paymentsPerYear&&balance>0;i++){
+      const interestPayment=balance*pr;
+      const principalPayment=(type==='interestOnly')?0:pmt-interestPayment;
+      yearlyInterest+=interestPayment;
+      yearlyPrincipal+=principalPayment;
+      balance-=principalPayment;
+    }
+    principalData.push(Math.round(yearlyPrincipal));
+    interestData.push(Math.round(yearlyInterest));
+  }
+  
+  const ctx=document.getElementById('repaymentChart').getContext('2d');
+  
+  if(myChart){myChart.destroy()}
+  
+  if(chartType==='pie'){
+    const totalPrincipal=principalData.reduce((a,b)=>a+b,0);
+    const totalInterest=interestData.reduce((a,b)=>a+b,0);
+    myChart=new Chart(ctx,{
+      type:'pie',
+      data:{
+        labels:['Principal','Interest'],
+        datasets:[{
+          data:[totalPrincipal,totalInterest],
+          backgroundColor:['#2563eb','#8ca5f5'],
+          borderColor:['#2563eb','#8ca5f5'],
+          borderWidth:2
+        }]
+      },
+      options:{
+        responsive:true,
+        maintainAspectRatio:false,
+        animation:{duration:800,easing:'easeInOutQuart'},
+        plugins:{
+          legend:{display:true,position:'top',labels:{color:'#c0c2d4',font:{size:12},padding:15}},
+          tooltip:{
+            callbacks:{
+              label:function(context){
+                const label=context.label||'';
+                const value=context.parsed||0;
+                const total=context.dataset.data.reduce((a,b)=>a+b,0);
+                const percentage=((value/total)*100).toFixed(1);
+                return label+': '+formatMoney(value)+' ('+percentage+'%)';
               }
             }
           }
         }
-      });
-    }
+      }
+    });
+  }else{
+    myChart=new Chart(ctx,{
+      type:'bar',
+      data:{
+        labels:labels,
+        datasets:[
+          {label:'Principal',data:principalData,backgroundColor:'#2563eb',borderColor:'#2563eb',borderWidth:1},
+          {label:'Interest',data:interestData,backgroundColor:'#8ca5f5',borderColor:'#8ca5f5',borderWidth:1}
+        ]
+      },
+      options:{
+        responsive:true,
+        maintainAspectRatio:false,
+        animation:{duration:800,easing:'easeInOutQuart'},
+        scales:{
+          x:{stacked:true,ticks:{color:'#c0c2d4',font:{size:10}},grid:{color:'#34344e'}},
+          y:{stacked:true,ticks:{color:'#c0c2d4',callback:function(value){return '$'+(value/1000).toFixed(0)+'k'}},grid:{color:'#34344e'}}
+        },
+        plugins:{
+          legend:{display:true,position:'top',labels:{color:'#c0c2d4',font:{size:11},padding:10}},
+          tooltip:{
+            callbacks:{
+              label:function(context){return context.dataset.label+': '+formatMoney(context.parsed.y)}
+            }
+          }
+        }
+      }
+    });
+  }
+}
     
     document.querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');calc()}));
     document.querySelectorAll('#loanPurposeGroup .radio-btn').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#loanPurposeGroup .radio-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');calc()}));
     document.querySelectorAll('#repaymentTypeGroup .radio-btn').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#repaymentTypeGroup .radio-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');calc()}));
     ['propertyValue','deposit','interestRate','comparisonRate','loanTerm','repayFreq'].forEach(id=>{document.getElementById(id).addEventListener('input',calc);document.getElementById(id).addEventListener('change',calc)});
-    
+
+   document.querySelectorAll('.chart-toggle-btn').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.chart-toggle-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');calc()}));
+
     calc();
 </script>
 
