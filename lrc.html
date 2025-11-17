@@ -6,291 +6,60 @@
   <title>Loan Repayment Calculator - Nest Capital Finance</title>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;700&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <style>
-    body {
-      font-family: 'Fira Sans', Arial, sans-serif;
-      font-weight: 300;
-      background: #181820;
-      color: #fff;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-    }
-    header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 70px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 1rem;
-      background: transparent;
-      z-index: 1000;
-      box-sizing: border-box;
-      transition: background-color 0.3s, box-shadow 0.3s;
-    }
-    header.scrolled {
-      background-color: #181820;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.75);
-    }
-    header img {
-      height: 60px;
-      filter: brightness(0) invert(1);
-      z-index: 1101;
-    }
-    .menu-toggle {
-      display: flex;
-      flex-direction: column;
-      width: 30px;
-      height: 22px;
-      cursor: pointer;
-      justify-content: space-between;
-      z-index: 1102;
-    }
-    .menu-toggle span {
-      display: block;
-      height: 4px;
-      background-color: white;
-      border-radius: 2px;
-      transition: transform 0.3s, opacity 0.3s;
-    }
-    .menu-toggle.open span:nth-child(1) { transform: translateY(9px) rotate(45deg);}
-    .menu-toggle.open span:nth-child(2) { opacity: 0;}
-    .menu-toggle.open span:nth-child(3) { transform: translateY(-9px) rotate(-45deg);}
-    .menu-panel {
-      position: fixed;
-      top: 70px; right: 0;
-      width: 220px;
-      height: calc(100% - 70px);
-      background: #181820;
-      flex-direction: column;
-      display: flex;
-      padding: 1.2rem 1rem;
-      gap: 1rem;
-      box-shadow: -4px 0 18px rgba(0,0,0,0.7);
-      transform: translateX(100%);
-      transition: transform 0.33s cubic-bezier(.68,-0.55,.27,1.55);
-      overflow-y: auto;
-      box-sizing: border-box;
-      z-index: 1500;
-      opacity: 1;
-      pointer-events: none;
-    }
-    .menu-panel.open {
-      transform: translateX(0);
-      pointer-events: auto;
-    }
-    .menu-panel a {
-      color: #fff;
-      font-weight: 600;
-      font-size: 1.12rem;
-      text-decoration: none;
-      cursor: pointer;
-      user-select: none;
-      border-radius: 6px;
-      padding: 0.7rem 0.8rem;
-      transition: color 0.13s, background 0.13s;
-      letter-spacing: .04em;
-      display: block;
-      width: 100%;
-    }
-    .menu-panel a:hover {
-      color: #2563eb;
-      background: #22232c;
-    }
-    @media (max-width: 700px) {
-      header img {height: 46px;}
-      .menu-panel {width: 90vw;}
-    }
-    main {
-      padding-top: 90px;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding-left: 1rem;
-      padding-right: 1rem;
-      box-sizing: border-box;
-    }
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2.5rem;
-      max-width: 1200px;
-      margin: 2rem auto;
-      background: none;
-      justify-content: center;
-    }
-    .calculator, .results {
-      background: #22232c;
-      color: #fff;
-      border-radius: 14px;
-      box-shadow: 0 1px 12px #0405123a;
-      padding: 2rem 2.5rem;
-      min-width: 340px;
-      max-width: 420px;
-      flex: 1 1 350px;
-    }
-    @media (max-width: 900px) {
-      .container {
-        flex-direction: column;
-        align-items: center;
-        gap: 1.5rem;
-      }
-      .calculator, .results {
-        max-width: 97vw;
-        min-width: unset;
-        padding: 1.3rem 1rem;
-      }
-    }
-    h1, h2 {
-      margin-top: 0;
-      text-align: left;
-      font-weight: 700;
-      color: #b6befb;
-      font-size: 2rem;
-    }
-    h2 {
-      font-size: 1.8rem;
-      margin-bottom: 1.2rem;
-      letter-spacing: .015em;
-    }
-    .tab-group {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 1.3rem;
-    }
-    .tab-btn {
-      flex: 1;
-      padding: 0.7rem 0.2rem;
-      border: 2px solid #34344e;
-      background: #2a2b36;
-      color: #fff;
-      font-weight: 600;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background .16s, color .16s, border .16s;
-      font-size: 1.05rem;
-    }
-    .tab-btn.active {
-      background: #2563eb;
-      color: #fff;
-      border-color: #2563eb;
-    }
-    .form-group {
-      margin-bottom: 1.2rem;
-    }
-    .form-label {
-      font-size: 1.05rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      display: block;
-      color: #c0c2d4;
-    }
-    .form-row {
-      display: flex;
-      gap: 1.2rem;
-    }
-    input[type="text"], input[type="tel"], input[type="number"], input[type="email"], select {
-      width: 100%;
-      padding: 0.7rem 1rem;
-      border-radius: 7px;
-      border: 1px solid #34344e;
-      background: #232330;
-      color: #fff;
-      font-size: 1rem;
-      font-family: 'Fira Sans', Arial, sans-serif;
-      font-weight: 300;
-      outline: none;
-      margin-bottom: 0.4rem;
-      transition: border 0.16s, background 0.16s;
-      box-sizing: border-box;
-    }
-    input:focus, select:focus {
-      border: 1.5px solid #2563eb;
-      background: #2a2b36;
-    }
-    input::placeholder {
-      color: #8c92ac;
-    }
-    .radio-group {
-      display: flex;
-      gap: 0.7rem;
-      margin-bottom: 0.4rem;
-      flex-wrap: wrap;
-    }
-    .radio-btn {
-      background: #2a2b36;
-      border: 2px solid #34344e;
-      border-radius: 7px;
-      color: #fff;
-      padding: 0.6rem 1.1rem;
-      font-weight: 600;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background .15s, color .15s, border .15s;
-    }
-    .radio-btn.active {
-      background: #2563eb;
-      color: #fff;
-      border-color: #2563eb;
-    }
-    .results {
-      background: #2a2b36;
-      color: #fff;
-      min-width: 320px;
-    }
-    .result-title {
-      font-size: 1.4rem;
-      margin-bottom: 0.9rem;
-      font-weight: 700;
-      color: #b6befb;
-    }
-    .result-main {
-      font-size: 2.3rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 1.3rem;
-    }
-    .result-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 1.05rem;
-      margin-bottom: .6rem;
-    }
-    .result-label {
-      color: #c0c2d4;
-    }
-    .result-value {
-      font-weight: 600;
-      color: #fff;
-    }
-    .total-amount {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #c0c2d4;
-      margin-top: 1.7rem;
-    }
-    .total-amount span {
-      display: block;
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #2563eb;
-      margin-top: 0.5rem;
-    }
-    .divider {
-      border-top: 1.6px solid #34344e;
-      margin: 1.1rem 0;
-    }
+    body{font-family:'Fira Sans',Arial,sans-serif;font-weight:300;background:#181820;color:#fff;margin:0;padding:0;overflow-x:hidden}
+    header{position:fixed;top:0;left:0;right:0;height:70px;display:flex;justify-content:space-between;align-items:center;padding:0 1rem;background:transparent;z-index:1000;box-sizing:border-box;transition:background-color .3s,box-shadow .3s}
+    header.scrolled{background-color:#181820;box-shadow:0 2px 12px rgba(0,0,0,.75)}
+    header img{height:60px;filter:brightness(0) invert(1);z-index:1101}
+    .menu-toggle{display:flex;flex-direction:column;width:30px;height:22px;cursor:pointer;justify-content:space-between;z-index:1102}
+    .menu-toggle span{display:block;height:4px;background-color:#fff;border-radius:2px;transition:transform .3s,opacity .3s}
+    .menu-toggle.open span:nth-child(1){transform:translateY(9px) rotate(45deg)}
+    .menu-toggle.open span:nth-child(2){opacity:0}
+    .menu-toggle.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
+    .menu-panel{position:fixed;top:70px;right:0;width:220px;height:calc(100% - 70px);background:#181820;flex-direction:column;display:flex;padding:1.2rem 1rem;gap:1rem;box-shadow:-4px 0 18px rgba(0,0,0,.7);transform:translateX(100%);transition:transform .33s cubic-bezier(.68,-.55,.27,1.55);overflow-y:auto;box-sizing:border-box;z-index:1500;opacity:1;pointer-events:none}
+    .menu-panel.open{transform:translateX(0);pointer-events:auto}
+    .menu-panel a{color:#fff;font-weight:600;font-size:1.12rem;text-decoration:none;cursor:pointer;user-select:none;border-radius:6px;padding:.7rem .8rem;transition:color .13s,background .13s;letter-spacing:.04em;display:block;width:100%}
+    .menu-panel a:hover{color:#2563eb;background:#22232c}
+    @media(max-width:700px){header img{height:46px}.menu-panel{width:90vw}}
+    main{padding-top:90px;max-width:1000px;margin:0 auto;padding-left:1rem;padding-right:1rem;box-sizing:border-box;padding-bottom:3rem}
+    .container{display:flex;flex-wrap:wrap;gap:2.5rem;max-width:1200px;margin:2rem auto;background:none;justify-content:center}
+    .calculator,.results{background:#22232c;color:#fff;border-radius:14px;box-shadow:0 1px 12px #0405123a;padding:2rem 2.5rem;min-width:340px;max-width:420px;flex:1 1 350px}
+    @media(max-width:900px){.container{flex-direction:column;align-items:center;gap:1.5rem}.calculator,.results{max-width:97vw;min-width:unset;padding:1.3rem 1rem}}
+    h2{margin-top:0;text-align:left;font-weight:700;color:#b6befb;font-size:1.8rem;margin-bottom:1.2rem;letter-spacing:.015em}
+    .tab-group{display:flex;gap:.5rem;margin-bottom:1.3rem}
+    .tab-btn{flex:1;padding:.7rem .2rem;border:2px solid #34344e;background:#2a2b36;color:#fff;font-weight:600;border-radius:6px;cursor:pointer;transition:background .16s,color .16s,border .16s;font-size:1.05rem}
+    .tab-btn.active{background:#2563eb;color:#fff;border-color:#2563eb}
+    .form-group{margin-bottom:1.2rem}
+    .form-label{font-size:1.05rem;font-weight:600;margin-bottom:.5rem;display:block;color:#c0c2d4}
+    .form-row{display:flex;gap:1.2rem}
+    @media(max-width:600px){.form-row{flex-direction:column;gap:0}}
+    input[type="number"],select{width:100%;padding:.7rem 1rem;border-radius:7px;border:1px solid #34344e;background:#232330;color:#fff;font-size:1rem;font-family:'Fira Sans',Arial,sans-serif;font-weight:300;outline:none;margin-bottom:.4rem;transition:border .16s,background .16s;box-sizing:border-box}
+    input:focus,select:focus{border:1.5px solid #2563eb;background:#2a2b36}
+    input::placeholder{color:#8c92ac}
+    select{cursor:pointer}
+    .radio-group{display:flex;gap:.7rem;margin-bottom:.4rem;flex-wrap:wrap}
+    .radio-btn{background:#2a2b36;border:2px solid #34344e;border-radius:7px;color:#fff;padding:.6rem 1.1rem;font-weight:600;font-size:1rem;cursor:pointer;transition:background .15s,color .15s,border .15s}
+    .radio-btn.active{background:#2563eb;color:#fff;border-color:#2563eb}
+    .results{background:#2a2b36;min-width:320px;max-width:500px}
+    .result-title{font-size:1.4rem;margin-bottom:.9rem;font-weight:700;color:#b6befb}
+    .result-row{display:flex;justify-content:space-between;font-size:1.05rem;margin-bottom:.6rem}
+    .result-label{color:#c0c2d4}
+    .result-value{font-weight:600;color:#fff}
+    .total-amount{font-size:1.2rem;font-weight:600;color:#c0c2d4;margin-top:1.7rem;margin-bottom:2rem}
+    .total-amount span{display:block;font-size:1.8rem;font-weight:700;color:#2563eb;margin-top:.5rem}
+    .divider{border-top:1.6px solid #34344e;margin:1.1rem 0}
+    .chart-container{margin-top:1.5rem;padding:1.2rem;background:#232330;border-radius:10px;position:relative;height:280px}
+    canvas{max-height:280px}
   </style>
 </head>
 <body>
   <header>
     <img src="https://raw.githubusercontent.com/Shaggyyyz/nestcapitalfinance-landing/refs/heads/main/NFCLogo1.png" alt="Nest Capital Finance Logo" />
     <div class="menu-toggle" id="menuToggle" aria-label="Toggle menu" tabindex="0" aria-expanded="false">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </div>
-    <div id="menuPanel" class="menu-panel" aria-label="Primary navigation">
+    <div id="menuPanel" class="menu-panel">
       <a href="Services.html">Services</a>
       <a href="about.html">About</a>
       <a href="#partners">Partners</a>
@@ -321,17 +90,17 @@
           </div>
         </div>
         <div class="form-group form-row">
-          <div style="flex:1;">
+          <div style="flex:1">
             <div class="form-label">Property value</div>
             <input type="number" id="propertyValue" min="0" step="1000" value="750000" />
           </div>
-          <div style="flex:1;">
+          <div style="flex:1">
             <div class="form-label">Deposit</div>
             <input type="number" id="deposit" min="0" step="500" value="225000" />
           </div>
         </div>
         <div class="form-group form-row">
-          <div style="flex:1;">
+          <div style="flex:1">
             <div class="form-label">Repayment frequency</div>
             <select id="repayFreq">
               <option value="monthly" selected>Monthly</option>
@@ -339,7 +108,7 @@
               <option value="weekly">Weekly</option>
             </select>
           </div>
-          <div style="flex:1;">
+          <div style="flex:1">
             <div class="form-label">Loan term</div>
             <select id="loanTerm">
               <option value="30" selected>30 years</option>
@@ -350,11 +119,11 @@
           </div>
         </div>
         <div class="form-group form-row">
-          <div style="flex:1;">
+          <div style="flex:1">
             <div class="form-label">Interest rate (%)</div>
             <input type="number" id="interestRate" min="0" max="20" step="0.01" value="5.69" />
           </div>
-          <div style="flex:1;">
+          <div style="flex:1">
             <div class="form-label">Comparison rate (%)</div>
             <input type="number" id="comparisonRate" min="0" max="20" step="0.01" value="5.73" />
           </div>
@@ -382,90 +151,120 @@
         </div>
         <div class="result-row">
           <span class="result-label">Interest charged</span>
-          <span class="result-value" id="interestChargedDisplay">$570,759
+          <span class="result-value" id="interestChargedDisplay">$570,759</span>
+        </div>
+        <div class="total-amount">Your estimated total amount<span id="totalAmountDisplay">$1,095,759</span></div>
+        <div class="chart-container">
+          <canvas id="repaymentChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </main>
 
-  <script>
-    function formatMoney(amount) {
-      return '$' + amount.toLocaleString(undefined, {maximumFractionDigits: 0});
+  
+
+ <script>
+    let myChart;
+    const menuToggle=document.getElementById('menuToggle');
+    const menuPanel=document.getElementById('menuPanel');
+    menuToggle.addEventListener('click',function(){menuToggle.classList.toggle('open');menuPanel.classList.toggle('open');menuToggle.setAttribute('aria-expanded',menuPanel.classList.contains('open'))});
+    menuToggle.addEventListener('keydown',function(e){if(e.key==="Enter"||e.key===" "){menuToggle.click()}});
+    document.addEventListener('click',function(e){if(!menuPanel.contains(e.target)&&!menuToggle.contains(e.target)){menuPanel.classList.remove('open');menuToggle.classList.remove('open');menuToggle.setAttribute('aria-expanded',"false")}});
+    window.addEventListener('scroll',function(){if(window.scrollY>10){document.querySelector('header').classList.add('scrolled')}else{document.querySelector('header').classList.remove('scrolled')}});
+    
+    function formatMoney(amt){return '$'+amt.toLocaleString(undefined,{maximumFractionDigits:0})}
+    
+    function calc(){
+      const pv=Number(document.getElementById('propertyValue').value)||0;
+      const dep=Number(document.getElementById('deposit').value)||0;
+      const rate=Number(document.getElementById('interestRate').value)||0;
+      const term=Number(document.getElementById('loanTerm').value)||30;
+      const freq=document.getElementById('repayFreq').value;
+      const type=document.querySelector('#repaymentTypeGroup .radio-btn.active').getAttribute('data-value');
+      const compRate=Number(document.getElementById('comparisonRate').value)||rate;
+      const loan=pv-dep;
+      let n,pr;
+      if(freq==="monthly"){n=term*12;pr=rate/100/12}
+      else if(freq==="fortnightly"){n=term*26;pr=rate/100/26}
+      else{n=term*52;pr=rate/100/52}
+      let pmt=0;
+      if(type==='interestOnly'){pmt=loan*pr}
+      else{if(rate>0){const fv=Math.pow(1+pr,n);pmt=loan*pr*fv/(fv-1)}}
+      const total=pmt*n;
+      const int=total-loan;
+      document.getElementById('repayAmount').textContent=formatMoney(Math.round(pmt));
+      document.getElementById('loanAmountDisplay').textContent=formatMoney(loan);
+      document.getElementById('interestChargedDisplay').textContent=formatMoney(Math.round(int));
+      document.getElementById('totalAmountDisplay').textContent=formatMoney(Math.round(total));
+      document.getElementById('rateDisplay').textContent=rate.toFixed(2)+"% p.a.";
+      document.getElementById('compRateDisplay').textContent=compRate.toFixed(2)+"% p.a.";
+      updateChart(loan,pr,n,pmt,type,term);
     }
-
-    function calculateRepayments() {
-      const propertyValue = Number(document.getElementById('propertyValue').value) || 0;
-      const deposit = Number(document.getElementById('deposit').value) || 0;
-      const interestRate = Number(document.getElementById('interestRate').value) || 0;
-      const loanTerm = Number(document.getElementById('loanTerm').value) || 30;
-      const repayFreq = document.getElementById('repayFreq').value;
-      const repaymentType = document.querySelector('#repaymentTypeGroup .radio-btn.active').getAttribute('data-value');
-      const compRate = Number(document.getElementById('comparisonRate').value) || interestRate;
-
-      const loanAmount = propertyValue - deposit;
-      let nPayments, periodRate;
-      if(repayFreq === "monthly") {
-        nPayments = loanTerm * 12;
-        periodRate = interestRate / 100 / 12;
-      } else if(repayFreq === "fortnightly") {
-        nPayments = loanTerm * 26;
-        periodRate = interestRate / 100 / 26;
-      } else { // weekly
-        nPayments = loanTerm * 52;
-        periodRate = interestRate / 100 / 52;
-      }
-
-      let repayment = 0;
-      if (repaymentType === 'interestOnly') {
-        repayment = loanAmount * periodRate;
-      } else {
-        if (interestRate > 0) {
-          const fv = Math.pow(1 + periodRate, nPayments);
-          repayment = loanAmount * periodRate * fv / (fv - 1);
+    
+    function updateChart(loan,pr,n,pmt,type,term){
+      const maxYears=Math.min(term,30);
+      const labels=[];
+      const principalData=[];
+      const interestData=[];
+      let balance=loan;
+      const paymentsPerYear=Math.round(n/term);
+      
+      for(let year=0;year<=maxYears;year++){
+        labels.push('Year '+year);
+        let yearlyPrincipal=0;
+        let yearlyInterest=0;
+        
+        for(let i=0;i<paymentsPerYear&&balance>0;i++){
+          const interestPayment=balance*pr;
+          const principalPayment=(type==='interestOnly')?0:pmt-interestPayment;
+          yearlyInterest+=interestPayment;
+          yearlyPrincipal+=principalPayment;
+          balance-=principalPayment;
         }
+        principalData.push(Math.round(yearlyPrincipal));
+        interestData.push(Math.round(yearlyInterest));
       }
-
-      // Total repayment and interest charged
-      let totalPaid = repayment * nPayments;
-      let interestCharged = totalPaid - loanAmount;
-
-      // Display
-      document.getElementById('repayAmount').textContent = formatMoney(Math.round(repayment));
-      document.getElementById('loanAmountDisplay').textContent = formatMoney(loanAmount);
-      document.getElementById('interestChargedDisplay').textContent = formatMoney(Math.round(interestCharged));
-      document.getElementById('totalAmountDisplay').textContent = formatMoney(Math.round(totalPaid));
-      document.getElementById('rateDisplay').textContent = interestRate.toFixed(2) + "% p.a.";
-      document.getElementById('compRateDisplay').textContent = compRate.toFixed(2) + "% p.a.";
+      
+      const ctx=document.getElementById('repaymentChart').getContext('2d');
+      
+      if(myChart){myChart.destroy()}
+      
+      myChart=new Chart(ctx,{
+        type:'bar',
+        data:{
+          labels:labels,
+          datasets:[
+            {label:'Principal',data:principalData,backgroundColor:'#2563eb',borderColor:'#2563eb',borderWidth:1},
+            {label:'Interest',data:interestData,backgroundColor:'#8ca5f5',borderColor:'#8ca5f5',borderWidth:1}
+          ]
+        },
+        options:{
+          responsive:true,
+          maintainAspectRatio:false,
+          animation:{duration:800,easing:'easeInOutQuart'},
+          scales:{
+            x:{stacked:true,ticks:{color:'#c0c2d4',font:{size:10}},grid:{color:'#34344e'}},
+            y:{stacked:true,ticks:{color:'#c0c2d4',callback:function(value){return '$'+(value/1000).toFixed(0)+'k'}},grid:{color:'#34344e'}}
+          },
+          plugins:{
+            legend:{display:true,position:'top',labels:{color:'#c0c2d4',font:{size:11},padding:10}},
+            tooltip:{
+              callbacks:{
+                label:function(context){return context.dataset.label+': '+formatMoney(context.parsed.y)}
+              }
+            }
+          }
+        }
+      });
     }
+    
+    document.querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');calc()}));
+    document.querySelectorAll('#loanPurposeGroup .radio-btn').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#loanPurposeGroup .radio-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');calc()}));
+    document.querySelectorAll('#repaymentTypeGroup .radio-btn').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#repaymentTypeGroup .radio-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');calc()}));
+    ['propertyValue','deposit','interestRate','comparisonRate','loanTerm','repayFreq'].forEach(id=>{document.getElementById(id).addEventListener('input',calc);document.getElementById(id).addEventListener('change',calc)});
+    
+    calc();
+</script>
 
-    // Radio buttons logic
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-        btn.classList.add('active');
-        // tab specific logic can go here
-        calculateRepayments();
-      });
-    });
-    document.querySelectorAll('#loanPurposeGroup .radio-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('#loanPurposeGroup .radio-btn').forEach(b=>b.classList.remove('active'));
-        btn.classList.add('active');
-        calculateRepayments();
-      });
-    });
-    document.querySelectorAll('#repaymentTypeGroup .radio-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('#repaymentTypeGroup .radio-btn').forEach(b=>b.classList.remove('active'));
-        btn.classList.add('active');
-        calculateRepayments();
-      });
-    });
-
-    // Real-time inputs
-    ['propertyValue','deposit','interestRate','comparisonRate','loanTerm','repayFreq','choicePackage'].forEach(id => {
-      document.getElementById(id).addEventListener('input', calculateRepayments);
-      document.getElementById(id).addEventListener('change', calculateRepayments);
-    });
-
-    // Initial calculate on page load
-    calculateRepayments();
-  </script>
 </body>
 </html>
