@@ -9,18 +9,26 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <style>
     body{font-family:'Fira Sans',Arial,sans-serif;font-weight:300;background:#181820;color:#fff;margin:0;padding:0;overflow-x:hidden}
-    header{position:fixed;top:0;left:0;right:0;height:70px;display:flex;justify-content:space-between;align-items:center;padding:0 1rem;background:transparent;z-index:1000;box-sizing:border-box;transition:background-color .3s,box-shadow .3s}
-    header.scrolled{background-color:#181820;box-shadow:0 2px 12px rgba(0,0,0,.75)}
-    header img{height:60px;filter:brightness(0) invert(1);z-index:1101}
-    .menu-toggle{display:flex;flex-direction:column;width:30px;height:22px;cursor:pointer;justify-content:space-between;z-index:1102}
-    .menu-toggle span{display:block;height:4px;background-color:#fff;border-radius:2px;transition:transform .3s,opacity .3s}
-    .menu-toggle.open span:nth-child(1){transform:translateY(9px) rotate(45deg)}
-    .menu-toggle.open span:nth-child(2){opacity:0}
-    .menu-toggle.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
-    .menu-panel{position:fixed;top:70px;right:0;width:220px;height:calc(100% - 70px);background:#181820;flex-direction:column;display:flex;padding:1.2rem 1rem;gap:1rem;box-shadow:-4px 0 18px rgba(0,0,0,.7);transform:translateX(100%);transition:transform .33s cubic-bezier(.68,-.55,.27,1.55);overflow-y:auto;box-sizing:border-box;z-index:1500;opacity:1;pointer-events:none}
-    .menu-panel.open{transform:translateX(0);pointer-events:auto}
-    .menu-panel a{color:#fff;font-weight:600;font-size:1.12rem;text-decoration:none;cursor:pointer;user-select:none;border-radius:6px;padding:.7rem .8rem;transition:color .13s,background .13s;letter-spacing:.04em;display:block;width:100%}
-    .menu-panel a:hover{color:#2563eb;background:#22232c}
+   header{position:fixed;top:0;left:0;right:0;height:70px;display:flex;justify-content:space-between;align-items:center;padding:0 2rem;background:transparent;z-index:1000;box-sizing:border-box;transition:background-color .3s,box-shadow .3s}
+header.scrolled{background-color:#181820;box-shadow:0 2px 12px rgba(0,0,0,.75)}
+header img{height:60px;filter:brightness(0) invert(1);z-index:1101}
+nav{display:flex;gap:2rem;align-items:center}
+nav a{color:#fff;font-weight:600;font-size:1.05rem;text-decoration:none;padding:.5rem 1rem;border-radius:6px;transition:color .2s,background .2s;letter-spacing:.02em}
+nav a:hover{color:#2563eb;background:#22232c}
+.menu-toggle{display:none;flex-direction:column;width:30px;height:22px;cursor:pointer;justify-content:space-between;z-index:1102}
+.menu-toggle span{display:block;height:4px;background-color:#fff;border-radius:2px;transition:transform .3s,opacity .3s}
+.menu-toggle.open span:nth-child(1){transform:translateY(9px) rotate(45deg)}
+.menu-toggle.open span:nth-child(2){opacity:0}
+.menu-toggle.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
+@media(max-width:768px){
+  header{padding:0 1rem}
+  nav{display:none;position:fixed;top:70px;right:0;width:90vw;height:calc(100% - 70px);background:#181820;flex-direction:column;padding:1.2rem 1rem;gap:1rem;box-shadow:-4px 0 18px rgba(0,0,0,.7);transform:translateX(100%);transition:transform .33s cubic-bezier(.68,-.55,.27,1.55);align-items:flex-start}
+  nav.open{display:flex;transform:translateX(0)}
+  nav a{width:100%;padding:.7rem .8rem;font-size:1.12rem}
+  .menu-toggle{display:flex}
+  header img{height:46px}
+}
+
     @media(max-width:700px){header img{height:46px}.menu-panel{width:90vw}}
     main{padding-top:90px;max-width:1000px;margin:0 auto;padding-left:1rem;padding-right:1rem;box-sizing:border-box;padding-bottom:3rem}
     .container{display:flex;flex-wrap:wrap;gap:2.5rem;max-width:1200px;margin:2rem auto;background:none;justify-content:center}
@@ -58,17 +66,17 @@
 </head>
 <body>
   <header>
-    <img src="https://raw.githubusercontent.com/Shaggyyyz/nestcapitalfinance-landing/refs/heads/main/NFCLogo1.png" alt="Nest Capital Finance Logo" />
-    <div class="menu-toggle" id="menuToggle" aria-label="Toggle menu" tabindex="0" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </div>
-    <div id="menuPanel" class="menu-panel">
-      <a href="Services.html">Services</a>
-      <a href="about.html">About</a>
-      <a href="#partners">Partners</a>
-      <a href="resources.html">Resources</a>
-      <a href="contact.html">Contact</a>
-    </div>
+   <img src="https://raw.githubusercontent.com/Shaggyyyz/nestcapitalfinance-landing/refs/heads/main/NFCLogo1.png" alt="Nest Capital Finance Logo" />
+  <div class="menu-toggle" id="menuToggle" aria-label="Toggle menu" tabindex="0" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </div>
+  <nav id="menuPanel">
+    <a href="index.html">Home</a>
+    <a href="Services.html">Services</a>
+    <a href="about.html">About</a>
+    <a href="resources.html">Resources</a>
+    <a href="contact.html">Contact</a>
+  </nav>
   </header>
   <main>
     <div class="container">
